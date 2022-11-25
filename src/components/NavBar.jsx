@@ -24,7 +24,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/signup">Sign Up</NavLink>
+            <NavLink to="/signup" style={{alignSelf: "center"}}>Sign Up</NavLink>
             <Nav.Link href="/login">Log In</Nav.Link>
             <Nav.Link href="/add/fishery">Registar Pesca</Nav.Link>
             <Nav.Link href="/profile">Perfil</Nav.Link>
