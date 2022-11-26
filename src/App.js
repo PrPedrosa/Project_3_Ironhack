@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import NewFisheryForm from './pages/NewFisheryForm';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/add/fishery' element={<NewFisheryForm/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
     </div>
   );

@@ -17,6 +17,7 @@ function NavBar() {
   useEffect(() => {
     setUrl(location.pathname);
   }, [location]);
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -26,8 +27,8 @@ function NavBar() {
           <Nav className="me-auto">
             <NavLink to="/signup" style={{alignSelf: "center"}}>Sign Up</NavLink>
             <Nav.Link href="/login">Log In</Nav.Link>
-            <Nav.Link href="/add/fishery">Registar Pesca</Nav.Link>
-            <Nav.Link href="/profile">Perfil</Nav.Link>
+            <NavLink to="/add/fishery">Registar Pesca</NavLink>
+            <NavLink to="/profile">Perfil</NavLink>
             {user && <p>Olá {user.name}</p>}
           </Nav>
         </Navbar.Collapse>
