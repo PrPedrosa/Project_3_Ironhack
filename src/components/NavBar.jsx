@@ -29,12 +29,12 @@ function NavBar() {
             <Nav.Link href="/login">Log In</Nav.Link>
             <NavLink to="/add/fishery">Registar Pesca</NavLink>
             <NavLink to="/profile">Perfil</NavLink>
+            <NavLink to="/fishes">Peixes</NavLink>
             {user && <p>Olá {user.name}</p>}
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    
   )
 }
     /* <StyledNavbar>

@@ -5,12 +5,12 @@ import axios from 'axios';
 function Profile() {
     const {user} = useContext(AuthContext)
     
-    const [allFisheries, setAllFisheries] = useState(null)
+    const [allUserFisheries, setAllUserFisheries] = useState(null)
     
     const getFisheries = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/fisheries`)
-            setAllFisheries(response.data.filter(fishery => fishery.userId === user._id))
+            setAllUserFisheries(response.data.filter(fishery => fishery.userId === user._id))
         } catch (error) {
             console.log(error)
         }
@@ -26,7 +26,7 @@ function Profile() {
       <p>oi {user.name}</p>
       <p>{user.email}</p>
       </div>}
-      {allFisheries && allFisheries.map(fishery => {
+      {allUserFisheries && allUserFisheries.map(fishery => {
         return (
             <div>
                 <p>{fishery.number}</p>

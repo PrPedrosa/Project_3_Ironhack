@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import NewFisheryForm from './pages/NewFisheryForm';
 import Profile from './pages/Profile';
+import Fishes from './pages/Fishes';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/add/fishery' element={<NewFisheryForm/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/fishes' element={<Fishes/>}/>
       </Routes>
     </div>
   );

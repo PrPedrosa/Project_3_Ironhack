@@ -108,7 +108,7 @@ function NewFisheryForm() {
             setWeight(0)
             setAmount(0)
             
-            navigate("/")
+            navigate("/profile")
         } catch (error) {
             console.log(error)
         }
@@ -164,7 +164,7 @@ function NewFisheryForm() {
             })}      
             </div>
 
-            <button type="submit">Submeter</button>
+            {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>}
         </form>
     </div>
   )
