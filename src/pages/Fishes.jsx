@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import Fish from "../components/Fish"
 
 function Fishes() {
     const [defaultFishes, setDefaultFishes] = useState(null)
@@ -13,7 +14,13 @@ function Fishes() {
 
   return (
     <div>
-        hello
+        {defaultFishes && defaultFishes.map(fish => {
+            return(
+                <div>
+                <Fish fish={fish}/>
+                </div>
+            )
+        })}
     </div>
   )
 }
