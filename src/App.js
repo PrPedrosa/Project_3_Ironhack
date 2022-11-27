@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import NewFisheryForm from './pages/NewFisheryForm';
 import Profile from './pages/Profile';
 import Fishes from './pages/Fishes';
+import Private from './components/Private';
+import AnonUser from './components/AnonUser';
 
 function App() {
   return (
@@ -14,10 +16,27 @@ function App() {
       <NavBar />
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/login' element={<Login/>}/>
+
+        <Route path='/signup' element={
+          <AnonUser>
+            <SignUp/>
+          </AnonUser>
+        }/>
+
+        <Route path='/login' element={
+          <AnonUser>
+            <Login/>
+          </AnonUser>
+        }/>
+        
         <Route path='/add/fishery' element={<NewFisheryForm/>}/>
-        <Route path='/profile' element={<Profile/>}/>
+
+        <Route path='/profile' element={
+          <Private>
+            <Profile/>
+          </Private>
+        }/>
+
         <Route path='/fishes' element={<Fishes/>}/>
       </Routes>
     </div>

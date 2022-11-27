@@ -3,13 +3,18 @@ import { useState, useEffect } from "react"
 import Fish from "../components/Fish"
 
 function Fishes() {
+    
+        
     const [defaultFishes, setDefaultFishes] = useState(null)
-
+    
     const getFishes = async() => {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/fishes`)
-        setDefaultFishes(response.data)
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/fishes`)   
+            setDefaultFishes(response.data)
+        } catch (error) {
+            console.log(error)
+        }
     } 
-
     useEffect(() => {getFishes()}, [])
 
   return (
