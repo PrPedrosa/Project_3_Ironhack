@@ -4,33 +4,35 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { AuthContext } from '../contexts/auth.context';
-/* import logo from "../images/DGRM_logo.png"
-import userIcon from "../images/user-icon.png"
-import styled from 'styled-components' */
+import logo from "../images/DGRM_logo.png"
+
 
 
 function NavBar() {
   const location = useLocation();
   const [url, setUrl] = useState(null);
-  const {user} = useContext(AuthContext)
+  const {user, loggedIn, logout} = useContext(AuthContext)
 
   useEffect(() => {
     setUrl(location.pathname);
   }, [location]);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar  expand="lg" className='nav' fixed="top">
       <Container>
-        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <NavLink to="/"><img src={logo} alt="DGRM logo" style={{height: "7vh"}}/></NavLink>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" /*style={{backgroundColor: "black"}} can style here, not on css*//>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/signup" style={{alignSelf: "center"}}>Sign Up</NavLink>
-            <Nav.Link href="/login">Log In</Nav.Link>
             <NavLink to="/add/fishery">Registar Pesca</NavLink>
-            <NavLink to="/profile">Perfil</NavLink>
             <NavLink to="/fishes">Peixes</NavLink>
+            <NavLink to="/profile">Perfil</NavLink>
             {user && <p>Olá {user.name}</p>}
+            {!loggedIn && 
+            <>
+              <NavLink to="/signup" style={{alignSelf: "center"}}>Sign Up</NavLink>
+              <NavLink to="/login">Log In</NavLink>
+            </>}
           </Nav>
         </Navbar.Collapse>
       </Container>

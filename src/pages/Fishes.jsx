@@ -22,7 +22,7 @@ function Fishes() {
         {defaultFishes && defaultFishes.map(fish => {
             return(
                 <div>
-                <Fish fish={fish}/>
+                  <Fish fish={fish}/>
                 </div>
             )
         })}

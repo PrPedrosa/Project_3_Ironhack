@@ -1,10 +1,11 @@
 import {useState, useEffect, useContext} from 'react'
 import axios from "axios"
 import {AuthContext} from '../contexts/auth.context';
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 
-function NewFisheryForm() {
+function EditFisheryForm() {
     const {user} = useContext(AuthContext)
+    const {fisheryId} = useParams()
 
     const [allFishes, setAllFishes] = useState(null)
     const [date, setDate] = useState("")
@@ -91,14 +92,46 @@ function NewFisheryForm() {
     }
     useEffect(() => {getFishes()}, [])
 
-    //TODO handlesubmit to the backend
+    //get fishery from backend to display on form
+
+    const getFishery = async () => {
+        try {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`);
+    
+          const {date, location, overallWeight, fishes, image} = response.data
+            setDate(date)
+            setLocation(location)
+            setImage(image)
+            setOverallWeight(overallWeight)
+            setFishesCaught(fishes)
+
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      useEffect(() => {getFishery()}, [])
+
+    //delete fishery
+
+    const deleteFishery = async () => {
+        try {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`)
+            navigate("/profile")
+            //do toastify?
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    //handlesubmit to the backend
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const newFishery = await axios.post(`${process.env.REACT_APP_API_URL}/fisheries`, {date, location, overallWeight, fishes: fishesCaught, image, userId: user._id})
-            console.log(newFishery)
+            const updatedFishery = await axios.put(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`, {date, location, overallWeight, fishes: fishesCaught, image, userId: user._id})
+            console.log(updatedFishery)
             
             setDate("")
             setLocation("")
@@ -117,6 +150,7 @@ function NewFisheryForm() {
   return (
     <div>
         <h1>Nova Pesca</h1>
+        <button onClick={deleteFishery}>Apagar pesca</button>
         <form onSubmit={handleSubmit}>
             <label htmlFor="date">Data: </label>
             <input type="date" name="date" id="date" value={date} onChange={handleDate} required/>
@@ -130,8 +164,8 @@ function NewFisheryForm() {
             </select>
 
             <label htmlFor="image">Foto:</label>
-            <img src={image ? image : "https://res.cloudinary.com/dirrmfung/image/upload/v1669478014/defaultFishery_v3hol3.jpg"} alt="current" />
-            <input type="file" name="image" onChange={handleUpload} />
+            <img src={image} alt="current" />
+            <input type="file" name="image" onChange={handleUpload}/>
 
             <label htmlFor="overallWeight">Peso Total(em Kg): </label>
             <input type="number" step="0.01" min="0" max="1000" placeholder='1.5' value={overallWeight} onChange={handleOverallWeight}/>
@@ -171,4 +205,4 @@ function NewFisheryForm() {
   )
 }
 
-export default NewFisheryForm
+export default EditFisheryForm

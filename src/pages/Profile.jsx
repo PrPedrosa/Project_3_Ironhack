@@ -1,9 +1,10 @@
 import { AuthContext } from '../contexts/auth.context';
 import {useContext, useState, useEffect} from "react"
 import axios from 'axios';
+import Fishery from '../components/Fishery';
 
 function Profile() {
-    const {user} = useContext(AuthContext)
+    const {user, logout} = useContext(AuthContext)
     
     const [allUserFisheries, setAllUserFisheries] = useState(null)
     
@@ -25,13 +26,13 @@ function Profile() {
       <img src={user.image} alt="user face" />
       <p>oi {user.name}</p>
       <p>{user.email}</p>
+      <p>Nº Cartão: {user.sustainableFisherNumber}</p>
+      <button onClick={logout}>logout</button>
       </div>}
       {allUserFisheries && allUserFisheries.map(fishery => {
         return (
             <div>
-                <p>{fishery.number}</p>
-                <img src={fishery.image} alt="fishing" />
-                <p>{fishery.date}</p>
+                <Fishery fishery={fishery}/>
             </div>
         )
       })}

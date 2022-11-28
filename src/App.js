@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Fishes from './pages/Fishes';
 import Private from './components/Private';
 import AnonUser from './components/AnonUser';
+import EditFisheryForm from './pages/EditFisheryForm';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         }/>
         
         <Route path='/add/fishery' element={<NewFisheryForm/>}/>
+        <Route path='/edit/fishery/:fisheryId' element={<EditFisheryForm/>}/>
 
         <Route path='/profile' element={
           <Private>
