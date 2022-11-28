@@ -22,12 +22,12 @@ function Fish(props) {
         {showDetails && <div>
             <Card.Text>{fish.scientificName}</Card.Text>
             {fish.minCatchSize ? <Card.Text>Tamanho mínimo de captura: {fish.minCatchSize}cm</Card.Text> : <Card.Text>Peso mínimo de captura: {fish.minCatchWeight}Kg</Card.Text>}
-            <Card.Text>Tamanho Máximo: {fish.maxLength}cm</Card.Text>
-            <Card.Text>Pescado {fish.totalAmountCatched} vezes</Card.Text>
+            <Card.Text>Existem {fish.totalAmountCatched} registos de capturas desta espécie</Card.Text>
             <Card.Text>Categoria de Ameaça: {fish.threatCategory}</Card.Text>
             <Card.Text>Habitat: {fish.habitat}</Card.Text>
             <Card.Text>Distribuição: {fish.areaFound}</Card.Text>
             <Card.Text>Descrição: {fish.description}</Card.Text>
+            <Card.Text>Tamanho Máximo: {fish.maxLength}cm</Card.Text>
         </div>
         }
         <Button variant="primary" onClick={toggleDetails}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</Button>

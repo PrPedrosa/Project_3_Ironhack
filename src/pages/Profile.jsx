@@ -37,7 +37,7 @@ function Profile() {
       <img src={user.image} alt="user face" />
       <p>oi {user.name}</p>
       <p>{user.email}</p>
-      <p>Nº Cartão: {user.sustainableFisherNumber}</p>
+      <p>Nº Cartão de Pescador Sustentável: {user.sustainableFisherNumber}</p>
       <button onClick={logout}>logout</button>
       <Link to={`/edit/user/`}>Editar Perfil</Link>
       <Link to={`/add/fish/`}>Adicionar Troféu</Link>

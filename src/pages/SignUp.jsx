@@ -41,7 +41,7 @@ function SignUp() {
         <label>Nome:</label>
         <input type="name" name="name" value={name} onChange={handleName} />
 
-        <label>Nº Cartão:</label>
+        <label>Nº Cartão Pescador Sustentável:</label>
         <input type="sustainableFisherNumber" name="sustainableFisherNumber" value={sustainableFisherNumber} onChange={handleSustainableFisherNumber} />
 
         <label>Password:</label>

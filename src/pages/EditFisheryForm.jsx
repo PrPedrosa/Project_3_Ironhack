@@ -13,17 +13,19 @@ function EditFisheryForm() {
     const [image, setImage] = useState('');
     const [loading, setLoading] = useState(false);
     const [overallWeight, setOverallWeight] = useState(0)
+    const [fishingType, setFishingType] = useState("")
     const [fishesCaught, setFishesCaught] = useState([])
     const [fishCaught, setFishCaught] = useState("")
     const [weight, setWeight] = useState(0)
-    const [amount, setAmount] = useState(0)
+    const [length, setLength] = useState(0)
 
     const handleDate = (e) => setDate(e.target.value);
     const handleLocation = (e) => setLocation(e.target.value);
     const handleOverallWeight = (e) => setOverallWeight(+(e.target.value));
+    const handleFishingType = (e) => setFishingType(e.target.value);
     const handleFishCaught = (e) => setFishCaught(e.target.value)
     const handleWeight = (e) => setWeight(+(e.target.value))
-    const handleAmount = (e) => setAmount(+(e.target.value))
+    const handleLength = (e) => setLength(+(e.target.value))
 
 
     //handle image
@@ -56,7 +58,7 @@ function EditFisheryForm() {
         const aCatch = {
             species: fishCaught,
             weight: weight,
-            amount: amount
+            amount: length
         }
         setFishesCaught((prev) => [...prev, aCatch])
         console.log(fishesCaught)
@@ -87,11 +89,12 @@ function EditFisheryForm() {
         try {
           const response = await axios.get(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`);
     
-          const {date, location, overallWeight, fishes, image} = response.data
+          const {date, location, overallWeight, fishingType, fishes, image} = response.data
             setDate(date)
             setLocation(location)
             setImage(image)
             setOverallWeight(overallWeight)
+            setFishingType(fishingType)
             setFishesCaught(fishes)
 
         } catch (error) {
@@ -119,16 +122,17 @@ function EditFisheryForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const updatedFishery = await axios.put(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`, {date, location, overallWeight, fishes: fishesCaught, image, userId: user._id})
+            const updatedFishery = await axios.put(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`, {date, location, overallWeight, fishingType, fishes: fishesCaught, image, userId: user._id})
             console.log(updatedFishery)
             
             setDate("")
             setLocation("")
             setOverallWeight(0)
+            setFishingType("")
             setFishesCaught([])
             setFishCaught("")
             setWeight(0)
-            setAmount(0)
+            setLength(0)
             
             navigate("/profile")
         } catch (error) {
@@ -152,6 +156,12 @@ function EditFisheryForm() {
                 <option value="Em frente a praia da Bafureira">Em frente à praia da Bafureira</option>
             </select>
 
+            <label htmlFor="fishingType">Modalidade:</label>
+            <select name="fishingType" id="fishingType" onChange={handleFishingType} value={fishingType? fishingType : setFishingType("Caça submarina")}>
+                <option value="Caça submarina">Caça submarina</option>
+                <option value="Pesca com linha">Pesca com linha</option>
+            </select>
+
             <label htmlFor="image">Foto:</label>
             <img src={image} alt="current" />
             <input type="file" name="image" onChange={handleUpload}/>
@@ -167,8 +177,8 @@ function EditFisheryForm() {
                     )
                 })}
             </select>
-            <label htmlFor="amount">Quantidade: </label>
-            <input type="number" name="amount" id="amount" onChange={handleAmount}/>
+            <label htmlFor="length">Tamanho (em cm): </label>
+            <input type="number" name="length" id="length" onChange={handleLength}/>
 
             <label htmlFor="weight">Peso(em Kg): </label>
             <input type="number" name="weight" id="weight" step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight}/>
@@ -180,7 +190,7 @@ function EditFisheryForm() {
                 return (
                     <div>
                         <p>{fish.species}</p>
-                        <span>{fish.amount} </span>
+                        <span>{fish.length} </span>
                         <span> {fish.weight}</span>
                         <button onClick={() => {deleteFishCaught(fishesCaught.indexOf(fish))}}>delete</button>
                     </div>

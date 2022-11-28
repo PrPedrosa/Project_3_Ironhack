@@ -24,8 +24,8 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" /*style={{backgroundColor: "black"}} can style here, not on css*//>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/add/fishery">Registar Pesca</NavLink>
-            <NavLink to="/fishes">Peixes</NavLink>
+            <NavLink to="/add/fishery">Registar Captura</NavLink>
+            <NavLink to="/fishes">Espécies</NavLink>
             <NavLink to="/userfishes">Troféus</NavLink>
             <NavLink to="/profile">Perfil</NavLink>
             <NavLink to="/" onClick={logout}>Logout</NavLink>
