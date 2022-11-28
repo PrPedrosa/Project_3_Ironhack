@@ -130,6 +130,7 @@ function NewFisheryForm() {
             </select>
 
             <label htmlFor="image">Foto:</label>
+            {image && <img src={image} alt="current"/>}
             <input type="file" name="image" onChange={handleUpload} />
 
             <label htmlFor="overallWeight">Peso Total (em Kg): </label>

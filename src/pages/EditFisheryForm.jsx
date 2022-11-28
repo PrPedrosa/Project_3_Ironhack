@@ -19,23 +19,12 @@ function EditFisheryForm() {
     const [amount, setAmount] = useState(0)
 
     const handleDate = (e) => setDate(e.target.value);
-    const handleLocation = (e) => {
-        setLocation(e.target.value);
-        console.log(e.target.value)
-    }
+    const handleLocation = (e) => setLocation(e.target.value);
     const handleOverallWeight = (e) => setOverallWeight(+(e.target.value));
-    const handleFishCaught = (e) => {
-        setFishCaught(e.target.value)
-        console.log(fishCaught)
-    }
-    const handleWeight = (e) => {
-        setWeight(+(e.target.value))
-        console.log(weight)
-    }
-    const handleAmount = (e) => {
-        setAmount(+(e.target.value))
-        console.log(amount)
-    }
+    const handleFishCaught = (e) => setFishCaught(e.target.value)
+    const handleWeight = (e) => setWeight(+(e.target.value))
+    const handleAmount = (e) => setAmount(+(e.target.value))
+
 
     //handle image
 
@@ -115,7 +104,7 @@ function EditFisheryForm() {
 
     const deleteFishery = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`)
+            await axios.delete(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}/${user._id}`)
             navigate("/profile")
             //do toastify?
         } catch (error) {
@@ -149,7 +138,7 @@ function EditFisheryForm() {
     
   return (
     <div>
-        <h1>Nova Pesca</h1>
+        <h1>Editar Pesca</h1>
         <button onClick={deleteFishery}>Apagar pesca</button>
         <form onSubmit={handleSubmit}>
             <label htmlFor="date">Data: </label>

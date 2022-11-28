@@ -8,6 +8,7 @@ function Profile() {
     const {user, logout} = useContext(AuthContext)
     
     const [allUserFisheries, setAllUserFisheries] = useState(null)
+    const [allUserFishes, setAllUserFishes] = useState(null)
     
     const getFisheries = async () => {
         try {
@@ -17,8 +18,17 @@ function Profile() {
             console.log(error)
         }
     }
+    const getFishes = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/userfishes`)
+            setAllUserFishes(response.data.filter(fish => fish.userId === user._id))
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {getFisheries()}, [user])
+    useEffect(() => {getFishes()}, [user])
     
   return (
     <div>
@@ -29,13 +39,22 @@ function Profile() {
       <p>{user.email}</p>
       <p>Nº Cartão: {user.sustainableFisherNumber}</p>
       <button onClick={logout}>logout</button>
-      <Link to={`/edit/user/${user._id}`}>Editar Perfil</Link>
+      <Link to={`/edit/user/`}>Editar Perfil</Link>
+      <Link to={`/add/fish/`}>Adicionar Troféu</Link>
       </div>}
       {allUserFisheries && allUserFisheries.map(fishery => {
         return (
             <div>
                 <Fishery fishery={fishery}/>
             </div>
+        )
+      })}
+      {allUserFishes && allUserFishes.map(fish => {
+        return (
+          <div>
+            <p>{fish.commonName}</p>
+            <Link to={`/edit/fish/${fish._id}`}>Editar troféu</Link>
+          </div>
         )
       })}
     </div>

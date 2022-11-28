@@ -11,6 +11,9 @@ import Private from './components/Private';
 import AnonUser from './components/AnonUser';
 import EditFisheryForm from './pages/EditFisheryForm';
 import EditUserForm from './pages/EditUserForm';
+import AddFishForm from './pages/AddFishForm';
+import EditFishForm from './pages/EditFishForm';
+import UserFishes from './pages/UserFishes';
 
 function App() {
   return (
@@ -40,8 +43,11 @@ function App() {
           </Private>
         }/>
 
-        <Route path='/edit/user' element={<EditUserForm/>}/>
+        <Route path='/edit/user/' element={<EditUserForm/>}/>
         <Route path='/fishes' element={<Fishes/>}/>
+        <Route path='/userfishes' element={<UserFishes/>}/>
+        <Route path='/add/fish/' element={<AddFishForm/>}/>
+        <Route path='/edit/fish/:fishId' element={<EditFishForm/>}/>
       </Routes>
     </div>
   );

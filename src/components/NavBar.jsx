@@ -26,6 +26,7 @@ function NavBar() {
           <Nav className="me-auto">
             <NavLink to="/add/fishery">Registar Pesca</NavLink>
             <NavLink to="/fishes">Peixes</NavLink>
+            <NavLink to="/userfishes">Troféus</NavLink>
             <NavLink to="/profile">Perfil</NavLink>
             <NavLink to="/" onClick={logout}>Logout</NavLink>
             {user && <p>Olá {user.name}</p>}
