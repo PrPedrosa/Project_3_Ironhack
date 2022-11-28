@@ -10,6 +10,7 @@ import Fishes from './pages/Fishes';
 import Private from './components/Private';
 import AnonUser from './components/AnonUser';
 import EditFisheryForm from './pages/EditFisheryForm';
+import EditUserForm from './pages/EditUserForm';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           </Private>
         }/>
 
+        <Route path='/edit/user' element={<EditUserForm/>}/>
         <Route path='/fishes' element={<Fishes/>}/>
       </Routes>
     </div>

@@ -19,9 +19,9 @@ function AuthProviderWrapper(props) {
       const storedToken = localStorage.getItem('authToken');
 
       if (storedToken) {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/verify`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/verify`, {
           headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        });  
         //The next part happens if the login was succesfful
         setLoggedIn(true);
         setUser(response.data);
@@ -49,6 +49,7 @@ function AuthProviderWrapper(props) {
     //we run authenticate again to reset the states
     authenticateUser();
   };
+
 
   return (
     <AuthContext.Provider value={{ loggedIn, user, loading, storeToken, authenticateUser, logout }}>

@@ -130,10 +130,9 @@ function NewFisheryForm() {
             </select>
 
             <label htmlFor="image">Foto:</label>
-            <img src={image ? image : "https://res.cloudinary.com/dirrmfung/image/upload/v1669478014/defaultFishery_v3hol3.jpg"} alt="current" />
             <input type="file" name="image" onChange={handleUpload} />
 
-            <label htmlFor="overallWeight">Peso Total(em Kg): </label>
+            <label htmlFor="overallWeight">Peso Total (em Kg): </label>
             <input type="number" step="0.01" min="0" max="1000" placeholder='1.5' value={overallWeight} onChange={handleOverallWeight}/>
 
             <label htmlFor="fishes">Peixe:</label>
@@ -147,7 +146,7 @@ function NewFisheryForm() {
             <label htmlFor="amount">Quantidade: </label>
             <input type="number" name="amount" id="amount" onChange={handleAmount}/>
 
-            <label htmlFor="weight">Peso(em Kg): </label>
+            <label htmlFor="weight">Peso (em Kg): </label>
             <input type="number" name="weight" id="weight" step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight}/>
             <span onClick={handleFishesCaught}>adicionar</span>
 

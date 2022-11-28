@@ -2,6 +2,7 @@ import { AuthContext } from '../contexts/auth.context';
 import {useContext, useState, useEffect} from "react"
 import axios from 'axios';
 import Fishery from '../components/Fishery';
+import { Link } from 'react-router-dom';
 
 function Profile() {
     const {user, logout} = useContext(AuthContext)
@@ -28,6 +29,7 @@ function Profile() {
       <p>{user.email}</p>
       <p>Nº Cartão: {user.sustainableFisherNumber}</p>
       <button onClick={logout}>logout</button>
+      <Link to={`/edit/user/${user._id}`}>Editar Perfil</Link>
       </div>}
       {allUserFisheries && allUserFisheries.map(fishery => {
         return (

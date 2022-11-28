@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext} from 'react'
-import { NavLink, Link, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -18,7 +18,7 @@ function NavBar() {
   }, [location]);
 
   return (
-    <Navbar  expand="lg" className='nav' fixed="top">
+    <Navbar  expand="lg" className='nav' sticky="top">
       <Container>
         <NavLink to="/"><img src={logo} alt="DGRM logo" style={{height: "7vh"}}/></NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" /*style={{backgroundColor: "black"}} can style here, not on css*//>
@@ -27,10 +27,11 @@ function NavBar() {
             <NavLink to="/add/fishery">Registar Pesca</NavLink>
             <NavLink to="/fishes">Peixes</NavLink>
             <NavLink to="/profile">Perfil</NavLink>
+            <NavLink to="/" onClick={logout}>Logout</NavLink>
             {user && <p>Olá {user.name}</p>}
             {!loggedIn && 
             <>
-              <NavLink to="/signup" style={{alignSelf: "center"}}>Sign Up</NavLink>
+              <NavLink to="/signup" >Sign Up</NavLink>
               <NavLink to="/login">Log In</NavLink>
             </>}
           </Nav>

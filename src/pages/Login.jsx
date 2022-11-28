@@ -30,7 +30,7 @@ function Login(props) {
       authenticateUser();
 
       //redirect
-      navigate('/');
+      navigate('/profile');
     } catch (error) {
       const errorDescription = error.response.data.message;
       setErrorMessage(errorDescription);
