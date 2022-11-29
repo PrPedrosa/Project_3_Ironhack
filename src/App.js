@@ -14,6 +14,7 @@ import EditUserForm from './pages/EditUserForm';
 import AddFishForm from './pages/AddFishForm';
 import EditFishForm from './pages/EditFishForm';
 import UserFishes from './pages/UserFishes';
+import AddTrashForm from './pages/AddTrashForm';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path='/userfishes' element={<UserFishes/>}/>
         <Route path='/add/fish/' element={<AddFishForm/>}/>
         <Route path='/edit/fish/:fishId' element={<EditFishForm/>}/>
+        <Route path='/add/trash' element={<AddTrashForm/>}/>
       </Routes>
     </div>
   );

@@ -25,6 +25,7 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavLink to="/add/fishery">Registar Captura</NavLink>
+            <NavLink to="/add/trash">Reportar Lixo Marinho</NavLink>
             <NavLink to="/fishes">Espécies</NavLink>
             <NavLink to="/userfishes">Troféus</NavLink>
             <NavLink to="/profile">Perfil</NavLink>
