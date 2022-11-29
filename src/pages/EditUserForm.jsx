@@ -5,6 +5,7 @@ import {useNavigate, useParams} from "react-router-dom"
 
 function EditUserForm() {
     const {user, authenticateUser, storeToken, logout} = useContext(AuthContext)
+    const storedToken = localStorage.getItem("authToken")
 
     const [name, setName] = useState(user.name)
     const [image, setImage] = useState(user.image)
@@ -43,7 +44,9 @@ function EditUserForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.put(`${process.env.REACT_APP_API_URL}/edit/user/${user._id}`, {name, email, image, sustainableFisherNumber})
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/edit/user/${user._id}`, {name, email, image, sustainableFisherNumber}, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
             storeToken(response.data.authToken);
             authenticateUser()
             
@@ -61,7 +64,9 @@ function EditUserForm() {
 
     const deleteUser = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/delete/user/${user._id}`)
+            await axios.delete(`${process.env.REACT_APP_API_URL}/delete/user/${user._id}`, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
             logout()
             navigate("/")
         } catch (error) {

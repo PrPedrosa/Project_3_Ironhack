@@ -6,6 +6,7 @@ import {useNavigate, useParams} from "react-router-dom"
 function EditFishForm() {
     const {user} = useContext(AuthContext)
     const {fishId} = useParams()
+    const storedToken = localStorage.getItem("authToken")
 
     const [commonName, setCommonName] = useState("")
     const [image, setImage] = useState("")
@@ -42,7 +43,9 @@ function EditFishForm() {
 
     const getFish = async () => {
         try {
-          const response = await axios.get(`${process.env.REACT_APP_API_URL}/fishes/${fishId}`);
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/fishes/${fishId}`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          });
     
           const {commonName, image, weight, length, areaFound} = response.data
             setCommonName(commonName)
@@ -59,7 +62,9 @@ function EditFishForm() {
 
     const deleteFish = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/fishes/${fishId}/${user._id}`)
+            await axios.delete(`${process.env.REACT_APP_API_URL}/fishes/${fishId}/${user._id}`, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
             navigate("/profile")
             //do toastify?
         } catch (error) {
@@ -71,7 +76,9 @@ function EditFishForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const newFish = await axios.put(`${process.env.REACT_APP_API_URL}/fishes/${fishId}`, {commonName, image, areaFound, weight, length})
+            const newFish = await axios.put(`${process.env.REACT_APP_API_URL}/fishes/${fishId}`, {commonName, image, areaFound, weight, length}, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
             console.log(newFish)
             
             setCommonName("")

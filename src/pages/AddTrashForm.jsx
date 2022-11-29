@@ -50,6 +50,7 @@ function AddTrashForm() {
     }
   return (
     <div>
+      <h1>Reportar Lixo Marinho</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="location">Localização: </label>
         <input type="text" name='location' id='location' onChange={handleLocation}/>

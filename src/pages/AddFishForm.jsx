@@ -5,6 +5,7 @@ import {useNavigate, useParams} from "react-router-dom"
 
 function AddFishForm() {
     const {user} = useContext(AuthContext)
+    const storedToken = localStorage.getItem("authToken")
 
     const [commonName, setCommonName] = useState("")
     const [image, setImage] = useState("")
@@ -42,7 +43,13 @@ function AddFishForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const newFish = await axios.post(`${process.env.REACT_APP_API_URL}/userfishes`, {commonName, image, areaFound, weight, length, userId: user._id})
+            const newFish = await axios.post(`${process.env.REACT_APP_API_URL}/userfishes`,
+            {
+              commonName, image, areaFound, weight, length, userId: user._id
+            },
+            {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
             console.log(newFish)
             
             setCommonName("")

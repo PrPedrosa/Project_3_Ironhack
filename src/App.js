@@ -20,8 +20,13 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      
       <Routes>
         <Route path='/' element={<Home/>}/>
+
+        <Route path='/fishes' element={<Fishes/>}/>
+
+        <Route path='/add/trash' element={<AddTrashForm/>}/>
 
         <Route path='/signup' element={
           <AnonUser>
@@ -35,8 +40,17 @@ function App() {
           </AnonUser>
         }/>
         
-        <Route path='/add/fishery' element={<NewFisheryForm/>}/>
-        <Route path='/edit/fishery/:fisheryId' element={<EditFisheryForm/>}/>
+        <Route path='/add/fishery' element={
+          <Private>
+            <NewFisheryForm/>
+          </Private>
+        }/>
+
+        <Route path='/edit/fishery/:fisheryId' element={
+          <Private>
+            <EditFisheryForm/>
+          </Private>
+        }/>
 
         <Route path='/profile' element={
           <Private>
@@ -44,12 +58,29 @@ function App() {
           </Private>
         }/>
 
-        <Route path='/edit/user/' element={<EditUserForm/>}/>
-        <Route path='/fishes' element={<Fishes/>}/>
-        <Route path='/userfishes' element={<UserFishes/>}/>
-        <Route path='/add/fish/' element={<AddFishForm/>}/>
-        <Route path='/edit/fish/:fishId' element={<EditFishForm/>}/>
-        <Route path='/add/trash' element={<AddTrashForm/>}/>
+        <Route path='/edit/user/' element={
+          <Private>
+            <EditUserForm/>
+          </Private>
+        }/>
+
+        <Route path='/userfishes' element={
+          <Private>
+            <UserFishes/>
+          </Private>
+        }/>
+
+        <Route path='/add/fish/' element={
+          <Private>
+            <AddFishForm/>
+          </Private>
+        }/>
+
+        <Route path='/edit/fish/:fishId' element={
+          <Private>
+            <EditFishForm/>
+          </Private>
+        }/>
       </Routes>
     </div>
   );

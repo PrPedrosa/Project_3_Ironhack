@@ -6,13 +6,16 @@ import { Link } from 'react-router-dom';
 
 function Profile() {
     const {user, logout} = useContext(AuthContext)
+    const storedToken = localStorage.getItem("authToken")
     
     const [allUserFisheries, setAllUserFisheries] = useState(null)
     const [allUserFishes, setAllUserFishes] = useState(null)
     
     const getFisheries = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/fisheries`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/fisheries`, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
             setAllUserFisheries(response.data.filter(fishery => fishery.userId === user._id))
         } catch (error) {
             console.log(error)
@@ -20,7 +23,9 @@ function Profile() {
     }
     const getFishes = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/userfishes`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/userfishes`, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
             setAllUserFishes(response.data.filter(fish => fish.userId === user._id))
         } catch (error) {
             console.log(error)

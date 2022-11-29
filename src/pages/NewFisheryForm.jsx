@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom"
 
 function NewFisheryForm() {
     const {user} = useContext(AuthContext)
+    const storedToken = localStorage.getItem("authToken")
 
     const [allFishes, setAllFishes] = useState(null)
     const [date, setDate] = useState("")
@@ -87,7 +88,9 @@ function NewFisheryForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const newFishery = await axios.post(`${process.env.REACT_APP_API_URL}/fisheries`, {date, location, overallWeight, fishingType, fishes: fishesCaught, image, userId: user._id})
+            const newFishery = await axios.post(`${process.env.REACT_APP_API_URL}/fisheries`, {date, location, overallWeight, fishingType, fishes: fishesCaught, image, userId: user._id}, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+              })
             console.log(newFishery)
             
             setDate("")

@@ -6,6 +6,7 @@ import {useNavigate, useParams} from "react-router-dom"
 function EditFisheryForm() {
     const {user} = useContext(AuthContext)
     const {fisheryId} = useParams()
+    const storedToken = localStorage.getItem("authToken")
 
     const [allFishes, setAllFishes] = useState(null)
     const [date, setDate] = useState("")
@@ -87,7 +88,9 @@ function EditFisheryForm() {
 
     const getFishery = async () => {
         try {
-          const response = await axios.get(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`);
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          });
     
           const {date, location, overallWeight, fishingType, fishes, image} = response.data
             setDate(date)
@@ -107,7 +110,9 @@ function EditFisheryForm() {
 
     const deleteFishery = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}/${user._id}`)
+            await axios.delete(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}/${user._id}`, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+            })
             navigate("/profile")
             //do toastify?
         } catch (error) {
@@ -122,8 +127,13 @@ function EditFisheryForm() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const updatedFishery = await axios.put(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`, {date, location, overallWeight, fishingType, fishes: fishesCaught, image, userId: user._id})
-            console.log(updatedFishery)
+            await axios.put(`${process.env.REACT_APP_API_URL}/fisheries/${fisheryId}`,
+            {
+                date, location, overallWeight, fishingType, fishes: fishesCaught, image, userId: user._id
+            },
+            {
+                headers: { Authorization: `Bearer ${storedToken}` }
+            })
             
             setDate("")
             setLocation("")
