@@ -30,10 +30,11 @@ function AddFishForm() {
     
           //send the file to our api
           const response = await axios.post(`${process.env.REACT_APP_API_URL}/upload`, uploadData);
-    
+
           console.log(response.data.fileUrl);
           setImage(response.data.fileUrl);
           setLoading(false);
+
         } catch (error) {
           console.log(error);
           setLoading(false);
@@ -50,7 +51,6 @@ function AddFishForm() {
             {
               headers: { Authorization: `Bearer ${storedToken}` },
             })
-            console.log(newFish)
             
             setCommonName("")
             setImage("")

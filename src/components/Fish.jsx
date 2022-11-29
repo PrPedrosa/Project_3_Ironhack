@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 function Fish(props) {
     const [showDetails, setShowDetails] = useState(false)
     const {fish} = props
+    const{className} = props
 
     const toggleDetails = () => setShowDetails(!showDetails)
 

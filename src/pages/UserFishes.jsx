@@ -24,7 +24,7 @@ function UserFishes() {
     <div>
         {allUserFishes && allUserFishes.map(fish => {
             return(
-                <div>
+                <div key={fish._id}>
                   <p>{fish.commonName}</p>
                   <img src={fish.image} alt={fish.commonName} />
                   {fish.userId === user._id && <Link to={`/edit/fish/${fish._id}`}>Editar Troféu</Link>}

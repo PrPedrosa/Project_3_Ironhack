@@ -49,14 +49,14 @@ function Profile() {
       </div>}
       {allUserFisheries && allUserFisheries.map(fishery => {
         return (
-            <div>
+            <div key={fishery._id}>
                 <Fishery fishery={fishery}/>
             </div>
         )
       })}
       {allUserFishes && allUserFishes.map(fish => {
         return (
-          <div>
+          <div key={fish._id}>
             <p>{fish.commonName}</p>
             <Link to={`/edit/fish/${fish._id}`}>Editar troféu</Link>
           </div>

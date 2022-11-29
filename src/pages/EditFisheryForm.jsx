@@ -183,7 +183,7 @@ function EditFisheryForm() {
             <select name="fishes" id="fishes" onClick={handleFishCaught}>
                 {allFishes && allFishes.map(fish =>{
                     return (
-                        <option value={fish.commonName}>{fish.commonName}</option>
+                        <option value={fish.commonName} key={fish._id}>{fish.commonName}</option>
                     )
                 })}
             </select>
@@ -198,7 +198,7 @@ function EditFisheryForm() {
             <div>
             {fishesCaught.map(fish => {
                 return (
-                    <div>
+                    <div key={fish._id}>
                         <p>{fish.species}</p>
                         <span>{fish.length} </span>
                         <span> {fish.weight}</span>

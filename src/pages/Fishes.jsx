@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Fish from "../components/Fish"
+import styled from "styled-components"
 
 function Fishes() {
     
@@ -21,7 +22,7 @@ function Fishes() {
     <div>
         {defaultFishes && defaultFishes.map(fish => {
             return(
-                <div>
+                <div key={fish._id}>
                   <Fish fish={fish}/>
                 </div>
             )
