@@ -12,6 +12,9 @@ function NavBar() {
   const location = useLocation();
   const [url, setUrl] = useState(null);
   const {user, loggedIn, logout} = useContext(AuthContext)
+  const [toggleCollapse, setToggleCollapse] = useState(false)
+
+  const handleToggleCollapse = () => setToggleCollapse(!toggleCollapse)
 
   useEffect(() => {
     setUrl(location.pathname);
@@ -21,20 +24,22 @@ function NavBar() {
     <Navbar  expand="lg" className='nav' sticky="top">
       <Container>
         <NavLink to="/"><img src={logo} alt="DGRM logo" style={{height: "7vh"}}/></NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" /*style={{backgroundColor: "black"}} can style here, not on css*//>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor: "rgb(0, 181, 226)", border: "3px solid black", boxShadow: toggleCollapse ? "0 0 10px 0 black" : "none"}} onClick={handleToggleCollapse}/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/add/fishery">Registar Captura</NavLink>
-            <NavLink to="/add/trash">Reportar Lixo Marinho</NavLink>
-            <NavLink to="/fishes">Espécies</NavLink>
-            <NavLink to="/userfishes">Troféus</NavLink>
-            <NavLink to="/profile">Perfil</NavLink>
-            <NavLink to="/" onClick={logout}>Logout</NavLink>
-            {user && <p>Olá {user.name}</p>}
+            <NavLink to="/fishes" className={"nav-link"}>Espécies</NavLink>
+            <NavLink to="/add/trash" className={"nav-link"}>Reportar Lixo Marinho</NavLink>
+            {loggedIn && 
+            <>
+            <NavLink to="/add/fishery" className={"nav-link"}>Registar Captura</NavLink>
+            <NavLink to="/userfishes" className={"nav-link"}>Troféus</NavLink>
+            <NavLink to="/profile" className={"nav-link"}>Perfil</NavLink>
+            <NavLink to="/" onClick={logout} className={"nav-link"}>Logout</NavLink>
+            </>}
             {!loggedIn && 
             <>
-              <NavLink to="/signup" >Sign Up</NavLink>
-              <NavLink to="/login">Log In</NavLink>
+              <NavLink to="/login" className={"nav-link"}>Log In</NavLink>
+              <NavLink to="/signup" className={"nav-link"}>Sign Up</NavLink>
             </>}
           </Nav>
         </Navbar.Collapse>
@@ -42,54 +47,5 @@ function NavBar() {
     </Navbar>
   )
 }
-    /* <StyledNavbar>
-      <Link to={"/"}><img src={logo} alt="logo" className='logo'/></Link>
-
-      <div className='dropdown'>
-        <NavLink to={"/login"} className={url === "/login" ? "using navLinks" : "navLinks"}>Log In</NavLink>
-        <NavLink to={"/signup"} className={url === "/signup" ? "using navLinks" : "navLinks"}>Sign Up</NavLink>
-        <NavLink to={"/add/fishery"} className={url === "/add/fishery" ? "using navLinks" : "navLinks"}>Registar Pesca</NavLink> 
-        <NavLink to={"/profile"}><img src={userIcon} alt="user icon" className='userIcon'/></NavLink> 
-      </div>
-    </StyledNavbar> */
-    
-
-/* const StyledNavbar = styled.nav`
-    height: 8vh;
-    background-color: #6b6bff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    div{
-        display: flex;
-        align-items: center;  
-    }
-
-    a{
-        margin-right: 1vw;
-    }
-
-    .navLinks{
-        text-decoration: none;
-        color: white;
-        border: 2px solid white;
-        border-radius: 10px;
-        padding: 1vh; 
-    }
-
-    .navLinks:hover,
-    .using{
-        border: 2px solid black;
-    }
-
-    .logo{
-        height: 8vh
-    }
-
-    .userIcon{
-        height: 6vh;
-    }
-` */
 
 export default NavBar

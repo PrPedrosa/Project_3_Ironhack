@@ -49,20 +49,28 @@ function AddTrashForm() {
 
     }
   return (
-    <div>
+    <div className='box'>
       <h1>Reportar Lixo Marinho</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form box">
         <label htmlFor="location">Localização: </label>
         <input type="text" name='location' id='location' onChange={handleLocation}/>
 
         <label htmlFor="trashType">Tipo de lixo: </label>
         <input type="text" name='trashType' id='trashType' onChange={handleTrashType}/>
 
-        <label htmlFor="image">Foto (opcional):</label>
-        {image && <img src={image} alt="current"/>}
-        <input type="file" name='image' id='image' onChange={handleUpload}/>
+        <label htmlFor="image" className='box'>
+        <p>Foto (opcional):</p>
+        {image ? 
+        <>
+          <img src={image} alt="current"/>
+          <p>Alterar foto</p>
+        </>
+        : <i className="fa fa-3x fa-camera"><p>adicionar foto</p></i>}
+        <input type="file" name='image' id='image' onChange={handleUpload} className="image-input"/>
+        </label>
+        
 
-        {!loading ? <button type="submit">Reportar</button> : <p>A carregar imagem...</p>}
+        {!loading ? <button type="submit">Reportar</button> : <p>A carregar imagem...</p>}{/*spinner instead of p? */}
       </form>
     </div>
   )
