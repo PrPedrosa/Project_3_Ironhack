@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext} from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -23,7 +23,7 @@ function NavBar() {
   return (
     <Navbar  expand="lg" className='nav' sticky="top">
       <Container>
-        <NavLink to="/"><img src={logo} alt="DGRM logo" style={{height: "7vh"}}/></NavLink>
+        <Link to="/"><img src={logo} alt="DGRM logo" style={{height: "7vh"}}/></Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor: "rgb(0, 181, 226)", border: "3px solid black", boxShadow: toggleCollapse ? "0 0 10px 0 black" : "none"}} onClick={handleToggleCollapse}/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -34,7 +34,7 @@ function NavBar() {
             <NavLink to="/add/fishery" className={"nav-link"}>Registar Captura</NavLink>
             <NavLink to="/userfishes" className={"nav-link"}>Troféus</NavLink>
             <NavLink to="/profile" className={"nav-link"}>Perfil</NavLink>
-            <NavLink to="/" onClick={logout} className={"nav-link"}>Logout</NavLink>
+            <Link to="/" onClick={logout} className={"nav-link"}>Logout</Link>
             </>}
             {!loggedIn && 
             <>
