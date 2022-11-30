@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { AuthContext } from '../contexts/auth.context';
-import logo from "../images/DGRM_logo.png"
+import logo from "../images/fish-logo.png"
 
 
 
@@ -21,10 +21,10 @@ function NavBar() {
   }, [location]);
 
   return (
-    <Navbar  expand="lg" className='nav' sticky="top">
+    <Navbar  expand="lg" className='nav' fixed="top">
       <Container>
         <Link to="/"><img src={logo} alt="DGRM logo" style={{height: "7vh"}}/></Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor: "rgb(0, 181, 226)", border: "3px solid black", boxShadow: toggleCollapse ? "0 0 10px 0 black" : "none"}} onClick={handleToggleCollapse}/>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor: "rgba(255, 255, 255, 0.6)", border: "3px solid black", boxShadow: toggleCollapse ? "0 0 10px 0 black" : "none"}} onClick={handleToggleCollapse}/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavLink to="/fishes" className={"nav-link"}>Espécies</NavLink>

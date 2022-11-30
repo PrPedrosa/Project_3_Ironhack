@@ -8,31 +8,34 @@ function Fishery({fishery}) {
     const [showDetails, setShowDetails] = useState(false)
     const toggleDetails = () => setShowDetails(!showDetails)
 
-    
 
   return (
-    <Card style={{ width: '80vw' }}>
+    <Card>
       <Card.Img variant="top" src={fishery.image} />
       <Card.Body>
-        <Card.Title>Capturas do dia: {fishery.date}</Card.Title>
-            {/* <Card.Text>Data: {fishery.date}</Card.Text> */}
-            <Card.Text>Localização: {fishery.location}</Card.Text>
-            <Card.Text>Modalidade: {fishery.fishingType}</Card.Text>
+        <Card.Title>Data: {fishery.date}</Card.Title>
+            <hr />
+            <Card.Text><b>Localização: </b><br />{fishery.location}</Card.Text>
         {showDetails && <div>
-            <Card.Text>Peso Total: {fishery.overallWeight} kg</Card.Text>
+            <Card.Text><b>Modalidade: </b><br />{fishery.fishingType}</Card.Text>
+            {/* <Card.Text>Peso Total: {fishery.overallWeight} kg</Card.Text> */}
+            <Card.Text><b>Peso Total: </b> {fishery.fishes.length !== 1? fishery.fishes.reduce((acc, val) => acc.weight + val.weight): fishery.fishes[0].weight} kg</Card.Text>
+            <hr />
             {fishery.fishes.map(fish => {
                 return(
-                    <Card.Text>
-                        <h4>{fish.species}</h4>
-                        <p>Tamanho: {fish.length} cm</p>
-                        <p>Peso: {fish.weight} kg</p>
-                    </Card.Text>
+                    <div className='fishery-card-fishes' key={fish._id}>
+                        <h5>{fish.species}</h5>
+                        <p>{fish.length} cm</p>
+                        <p>{fish.weight} kg</p>
+                    </div>
                 )
             })}
         </div>
         }
-        <Button variant="primary" onClick={toggleDetails}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</Button>
-        <Link to={`/edit/fishery/${fishery._id}`}>Editar</Link>
+        <div className='fishery-card-fishes'>
+        <button className={showDetails? 'small-buttons switch': "small-buttons"} onClick={toggleDetails}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</button>
+        <button className='small-buttons edit-btn'><Link to={`/edit/fishery/${fishery._id}`} className="link-text">Editar</Link></button>
+        </div>
       </Card.Body>
     </Card>
   )

@@ -8,8 +8,8 @@ function Home() {
 
   return (
     <>
-    <div className='content-container box'>
-      <h1 className='title'>Pescar na Área Marinha Protegida das Avencas</h1>
+    <div className='home-content-container box'>
+      <h1 className='title'>Pesca na Área Marinha Protegida das Avencas</h1>
       <img src={homeImage} alt="zona da AMPA" className="home-img"/>
       {!loggedIn && <p className={"home-p"}>Crie uma conta ou faça login para registar as suas capturas</p>}
       {!loggedIn && <div className='buttons-box'>
@@ -17,7 +17,7 @@ function Home() {
       <Link to={"/signup"} className="buttons">Criar Conta</Link>
       </div>}
       {loggedIn && <div className='buttons-box'>
-      <Link to={"/add/fishery"} className="buttons">Registar Captura</Link>
+      <Link to={"/add/fishery"} className="buttons">Registar Capturas</Link>
       <Link to={"/add/trash"} className="buttons">Reportar Lixo Marinho</Link>
       </div>}
     </div>
