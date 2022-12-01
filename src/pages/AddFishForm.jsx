@@ -1,7 +1,8 @@
 import {useState, useEffect, useContext} from 'react'
 import axios from "axios"
 import {AuthContext} from '../contexts/auth.context';
-import {useNavigate, useParams} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom";
+import loadingGif from "../images/loading-gif.gif"
 
 function AddFishForm() {
     const {user} = useContext(AuthContext)
@@ -65,28 +66,40 @@ function AddFishForm() {
     }
 
   return (
-    <div>
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="commonName">Espécie:</label>
-        <input type="text" name='commonName' id='commonName' value={commonName} onChange={handleCommonName}/>
+    <div className='form-box form-div'>
+    <h1>Adicionar Troféu</h1>
+    <form onSubmit={handleSubmit} className='form-box form-form'>
+        <label htmlFor="commonName">Espécie*</label>
+        <input type="text" name='commonName' id='commonName' value={commonName} onChange={handleCommonName} required/>
 
-        <label htmlFor="image">Foto:</label>
+        {/* <label htmlFor="image">Foto:</label>
         {image && <img src={image} alt="current"/>}
-        <input type="file" name='image' id='image' onChange={handleUpload}/>
+        <input type="file" name='image' id='image' onChange={handleUpload}/> */}
 
-        <label htmlFor="areaFound">Localização:</label>
-        <input type="text" name='areaFound' id='areaFound' value={areaFound} onChange={handleAreaFound}/>
 
-        <label htmlFor="weight">Peso:</label>
-        <input type="number" name='weight' id='weight' value={weight} onChange={handleWeight}/>
+        <label htmlFor="areaFound">Localização*</label>
+        <input type="text" name='areaFound' id='areaFound' value={areaFound} onChange={handleAreaFound} required/>
 
-        <label htmlFor="length">Tamanho:</label>
-        <input type="number" name='length' id='length' value={length} onChange={handleLength}/>
+        <label htmlFor="weight">Peso (em kg)*</label>
+        <input type="number" name='weight' id='weight' value={weight} step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight} required/>
 
-        {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>}
+        <label htmlFor="length">Tamanho (em cm)*</label>
+        <input type="number" name='length' id='length' value={length} onChange={handleLength} required/>
+
+        <label htmlFor="image" className='form-box'>
+        <p>Imagem*</p>
+        {image ? 
+        <>
+          <img src={image} alt="current"/>
+          <p className='small-buttons'>Alterar foto</p>
+        </>
+        : <i className="fa fa-3x fa-camera"><p>Adicionar Imagem</p></i>}
+        <input type="file" name='image' id='image' onChange={handleUpload} className="image-input"/>
+        </label>
+        {/* {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>} */}
+        {!loading ? <button type="submit" className='buttons'>Adicionar</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
     </form>
-
-
+    <p>Campos marcados com * são obrigatórios</p>
     </div>
   )
 }

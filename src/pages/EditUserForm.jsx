@@ -2,6 +2,7 @@ import {useState, useEffect, useContext} from 'react'
 import axios from "axios"
 import {AuthContext} from '../contexts/auth.context';
 import {useNavigate, useParams} from "react-router-dom"
+import loadingGif from "../images/loading-gif.gif"
 
 function EditUserForm() {
     const {user, authenticateUser, storeToken, logout} = useContext(AuthContext)
@@ -76,23 +77,38 @@ function EditUserForm() {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <p onClick={deleteUser}>Apagar Conta</p>
+    <div className='form-box form-div'>
+      <h1>Editar Dados</h1>
+      <form onSubmit={handleSubmit} className='form-box form-form'>
         <label htmlFor="name">Nome:</label>
         <input type="text" name='name' id='name' value={name} onChange={handleName}/>
 
-        <label htmlFor="image">Foto de Perfil:</label>
+        {/* <label htmlFor="image">Foto de Perfil:</label>
         <img src={image} alt="current" />
-        <input type="file" name='image' id='image' onChange={handleUpload}/>
+        <input type="file" name='image' id='image' onChange={handleUpload}/> */}
+
 
         <label htmlFor="email">Email:</label>
         <input type="text" name='email' id='email' value={email} onChange={handleEmail}/>
 
         <label htmlFor="sustainableFisherNumber">Nº de cartão:</label>
         <input type="text" name='sustainableFisherNumber' id='sustainableFisherNumber' value={sustainableFisherNumber} onChange={handleSustainableFisherNumber}/>
-        {loading ? <p>Loading...</p> :<button type='submit'>Guardar alterações</button>}
+
+        {/* {loading ? <p>Loading...</p> :<button type='submit'>Guardar alterações</button>} */}
+        <label htmlFor="image" className='form-box'>
+        <p>Imagem*</p>
+        {image ? 
+        <>
+          <img src={image} alt="current"/>
+          <p className='small-buttons'>Alterar foto</p>
+        </>
+        : <i className="fa fa-3x fa-camera"><p>Adicionar Imagem</p></i>}
+        <input type="file" name='image' id='image' onChange={handleUpload} className="image-input"/>
+        </label>
+
+        {!loading ? <button type="submit" className='buttons'>Guardar Alterações</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
       </form>
+      <p onClick={deleteUser} className="small-buttons logout">Apagar Conta</p>
 
     </div>
   )

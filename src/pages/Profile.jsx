@@ -42,6 +42,7 @@ function Profile() {
         await axios.delete(`${process.env.REACT_APP_API_URL}/fishes/${fishId}/${user._id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
+        getFishes()
       } catch (error) {
         console.log(error)
       }
@@ -60,7 +61,7 @@ function Profile() {
         <div className='details-links'>
           <Link to={`/edit/user/`} className="small-buttons edit-btn">Editar Perfil</Link>
           <Link to={`/add/fish/`} className="small-buttons">Adicionar Troféu</Link>
-          <Link to={`/add/fishery/`} className="small-buttons">Registar Capturas</Link>
+          <Link to={`/add/fishery/`} className="small-buttons">Registar Pesca</Link>
           {/* <button onClick={logout} className="small-buttons logout">Logout</button> */}
         </div>
       </div>
@@ -71,7 +72,7 @@ function Profile() {
       </div>
       </div>}
       <div className='profile-buttons-box'>
-      <button onClick={toggleSeeFisheries} className={seeFisheries? "buttons switch" : "buttons"}>{seeFisheries? "Esconder Capturas" : "Ver Capturas"}</button>
+      <button onClick={toggleSeeFisheries} className={seeFisheries? "buttons switch" : "buttons"}>{seeFisheries? "Esconder Pescas" : "Ver Pescas"}</button>
       <button onClick={toggleSeeFishes} className={seeFishes? "buttons switch" : "buttons"}>{seeFishes? "Esconder Troféus" : "Ver Troféus"}</button>
       </div>
       <div className='card-container'>

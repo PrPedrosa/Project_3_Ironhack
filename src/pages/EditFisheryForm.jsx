@@ -2,6 +2,7 @@ import {useState, useEffect, useContext} from 'react'
 import axios from "axios"
 import {AuthContext} from '../contexts/auth.context';
 import {useNavigate, useParams} from "react-router-dom"
+import loadingGif from "../images/loading-gif.gif"
 
 function EditFisheryForm() {
     const {user} = useContext(AuthContext)
@@ -151,65 +152,83 @@ function EditFisheryForm() {
     }
     
   return (
-    <div>
+    <div className='form-box form-div'>
         <h1>Editar Pesca</h1>
-        <button onClick={deleteFishery}>Apagar pesca</button>
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="date">Data: </label>
+        
+        <form onSubmit={handleSubmit} className='form-box form-form'>
+            <label htmlFor="date">Data*</label>
             <input type="date" name="date" id="date" value={date} onChange={handleDate} required/>
 
-            <label htmlFor="location">Localização: </label>
-            <select name="location" id="location" onChange={handleLocation} value={location ? location : setLocation("Em frente a praia da Parede")}>
+            <label htmlFor="location">Localização*</label>
+            <select name="location" id="location" onChange={handleLocation} value={location ? location : setLocation("Em frente a praia da Parede")} required>
                 <option value="Em frente a praia da Parede">Em frente à praia da Parede</option>
                 <option value="Em frente a praia das Avencas">Em frente à praia das Avencas</option>
                 <option value="Em frente a praia de Sao Pedro">Em frente à praia de São Pedro</option>
                 <option value="Em frente a praia da Bafureira">Em frente à praia da Bafureira</option>
             </select>
 
-            <label htmlFor="fishingType">Modalidade:</label>
-            <select name="fishingType" id="fishingType" onChange={handleFishingType} value={fishingType? fishingType : setFishingType("Caça submarina")}>
+            <label htmlFor="fishingType">Modalidade*</label>
+            <select name="fishingType" id="fishingType" onChange={handleFishingType} value={fishingType? fishingType : setFishingType("Caça submarina")} required>
                 <option value="Caça submarina">Caça submarina</option>
                 <option value="Pesca com linha">Pesca com linha</option>
             </select>
 
-            <label htmlFor="image">Foto:</label>
+            {/* <label htmlFor="image">Foto:</label>
             <img src={image} alt="current" />
-            <input type="file" name="image" onChange={handleUpload}/>
+            <input type="file" name="image" onChange={handleUpload}/> */}
+            <label htmlFor="image" className='form-box'>
+              <p>Imagem</p>
+              {image ? 
+                <>
+                  <img src={image} alt="current"/>
+                  <span className='small-buttons'>Alterar Imagem</span>
+                </>
+                : <i className="fa fa-3x fa-camera"><p>Adicionar Imagem</p></i>}
+                <input type="file" name='image' id='image' onChange={handleUpload} className="image-input"/>
+            </label>
+            {image && <span className='small-buttons logout' onClick={() => setImage("")}>Apagar Imagem</span>}
 
             <label htmlFor="overallWeight">Peso Total(em Kg): </label>
             <input type="number" step="0.01" min="0" max="1000" placeholder='1.5' value={overallWeight} onChange={handleOverallWeight}/>
 
-            <label htmlFor="fishes">Peixe:</label>
-            <select name="fishes" id="fishes" onClick={handleFishCaught}>
+            <hr style={{width: "80%"}}/>
+
+            <em style={{textAlign: "center"}}>Adicione em baixo todas as capturas</em>
+
+            <label htmlFor="fishes">Espécie*</label>
+            <select name="fishes" id="fishes" onClick={handleFishCaught} required>
                 {allFishes && allFishes.map(fish =>{
                     return (
                         <option value={fish.commonName} key={fish._id}>{fish.commonName}</option>
                     )
                 })}
             </select>
-            <label htmlFor="length">Tamanho (em cm): </label>
-            <input type="number" name="length" id="length" onChange={handleLength}/>
+            <label htmlFor="length">Tamanho (em cm)* </label>
+            <input type="number" name="length" id="length" onChange={handleLength} required/>
 
-            <label htmlFor="weight">Peso(em Kg): </label>
-            <input type="number" name="weight" id="weight" step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight}/>
-            <span onClick={handleFishesCaught}>adicionar</span>
+            <label htmlFor="weight">Peso (em kg)* </label>
+            <input type="number" name="weight" id="weight" step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight} required/>
+            <span onClick={handleFishesCaught} className="small-buttons">Adicionar Captura</span>
 
             {/* loop over fishescaught array to show to user and let him delete */}
-            <div>
+            <div className='fishes-box'>
             {fishesCaught.map(fish => {
                 return (
-                    <div key={fish._id}>
-                        <p>{fish.species}</p>
-                        <span>{fish.length} </span>
-                        <span> {fish.weight}</span>
-                        <button onClick={() => {deleteFishCaught(fishesCaught.indexOf(fish))}}>delete</button>
+                    <div key={fish._id} className="display-fishes">
+                        <span>{fish.species} - </span>
+                        <span>{fish.length}cm,</span>
+                        <span> {fish.weight}kg</span>
+                        <button onClick={() => {deleteFishCaught(fishesCaught.indexOf(fish))}} className="small-buttons logout">Apagar</button>
                     </div>
                 )
             })}      
             </div>
 
-            {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>}
+            {/* {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>} */}
+            {!loading ? <button type="submit" className='buttons'>Submeter</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
         </form>
+        <p>Campos marcados com * são obrigatórios</p>
+        <button onClick={deleteFishery} className="small-buttons logout">Apagar Pesca</button>
     </div>
   )
 }

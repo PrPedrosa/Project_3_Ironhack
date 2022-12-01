@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import loadingGif from "../images/loading-gif.gif"
 
 function AddTrashForm() {
     const [location, setLocation] = useState("")
@@ -49,29 +50,30 @@ function AddTrashForm() {
 
     }
   return (
-    <div className='box'>
-      <h1>Reportar Lixo Marinho</h1>
-      <form onSubmit={handleSubmit} className="form box">
-        <label htmlFor="location">Localização: </label>
+    <div className='form-box form-div' style={{height: "100vh"}}>
+      <h1>Reportar Lixo</h1>
+      <form onSubmit={handleSubmit} className='form-box form-form'>
+        <label htmlFor="location">Localização*</label>
         <input type="text" name='location' id='location' onChange={handleLocation}/>
 
-        <label htmlFor="trashType">Tipo de lixo: </label>
+        <label htmlFor="trashType">Tipo de lixo*</label>
         <input type="text" name='trashType' id='trashType' onChange={handleTrashType}/>
 
-        <label htmlFor="image" className='box'>
-        <p>Foto (opcional):</p>
+        <label htmlFor="image" className='form-box'>
+        <p>Imagem</p>
         {image ? 
         <>
           <img src={image} alt="current"/>
-          <p>Alterar foto</p>
+          <p className='small-buttons'>Alterar foto</p>
         </>
-        : <i className="fa fa-3x fa-camera"><p>adicionar foto</p></i>}
+        : <i className="fa fa-3x fa-camera"><p>Adicionar Imagem</p></i>}
         <input type="file" name='image' id='image' onChange={handleUpload} className="image-input"/>
         </label>
         
 
-        {!loading ? <button type="submit">Reportar</button> : <p>A carregar imagem...</p>}{/*spinner instead of p? */}
+        {!loading ? <button type="submit" className='buttons'>Reportar</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}{/*spinner instead of p? */}
       </form>
+      <p>Campos marcados com * são obrigatórios</p>
     </div>
   )
 }
