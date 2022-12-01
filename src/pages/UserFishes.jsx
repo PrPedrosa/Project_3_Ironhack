@@ -22,19 +22,19 @@ function UserFishes() {
 
   return (
   <div className="page-body" style={allUserFishes && allUserFishes[3] ? {height: "100%"} : {height: "100vh"}}>
-    <h1 style={{textAlign: "center", padding: "4vh", textDecoration: "underline"}}>Troféus</h1>
+    <h1 className="subtitle">Troféus</h1>
     <div className='card-container'>
       {allUserFishes && allUserFishes.map(fish => {
         return (
           <>
           <div key={fish._id} className="user-fish-box">
             <div className='user-fish-img-box'>
-            <img src={fish.image} alt={fish.commonName} style={{height: "10vh"}} className="user-fish-img"/>
+            <img src={fish.image} alt={fish.commonName} className="user-fish-img"/>
             </div>
             <div className='user-fish-box-details'>
             <span><b>Pescador: </b>{fish.userId.name}</span>
             <div className='user-fish-box-info'>
-            <span><b>{fish.commonName} - </b> {fish.weight}kg, {fish.length}cm</span>
+            <span><b>{fish.commonName}: </b> {fish.weight}kg, {fish.length}cm</span>
             {/* <span>{fish.weight}kg,</span>
             <span>{fish.length}cm</span> */}
             </div>

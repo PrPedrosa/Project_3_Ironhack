@@ -1,5 +1,5 @@
 import { AuthContext } from '../contexts/auth.context';
-import {useContext, useState, useEffect} from "react"
+import {useContext, useState} from "react"
 import axios from 'axios';
 import Fishery from '../components/Fishery';
 import { Link } from 'react-router-dom';

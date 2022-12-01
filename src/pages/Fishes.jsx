@@ -18,7 +18,7 @@ function Fishes() {
 
   return (
     <div className="card-container page-body">
-        <h1 style={{textAlign: "center", padding: "4vh", textDecoration: "underline"}}>Espécies</h1>
+        <h1 className="subtitle">Espécies</h1>
         {defaultFishes && defaultFishes.map(fish => {
             return(
                 <div key={fish._id} style={{border: "1px solid black", borderRadius: "5px", margin: "2vh", textAlign: "center"}}>
