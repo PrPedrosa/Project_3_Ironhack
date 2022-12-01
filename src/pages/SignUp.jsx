@@ -30,30 +30,31 @@ function SignUp() {
   };
 
   return (
-    <div>
+    <div className='form-box form-div'>
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
+      <form onSubmit={handleSignupSubmit} className='form-box form-form'>
        
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+        <label>Email*</label>
+        <input type="email" name="email" value={email} onChange={handleEmail} required/>
 
-        <label>Nome:</label>
-        <input type="name" name="name" value={name} onChange={handleName} />
+        <label>Nome*</label>
+        <input type="name" name="name" value={name} onChange={handleName} required/>
 
-        <label>Nº Cartão Pescador Sustentável:</label>
+        <label>Nº Cartão Pescador Sustentável</label>
         <input type="sustainableFisherNumber" name="sustainableFisherNumber" value={sustainableFisherNumber} onChange={handleSustainableFisherNumber} />
 
-        <label>Password:</label>
-        <input type="password" name="password" value={password} onChange={handlePassword} />
+        <label>Password*</label>
+        <input type="password" name="password" value={password} onChange={handlePassword} required/>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" className='buttons' style={{margin: "1vw"}}>Sign Up</button>
       </form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <em>Campos marcados com * são obrigatórios</em>
 
-      <p>Already have account?</p>
-      <Link to="/login"> Login</Link>
+      <p style={{margin: "10px 0px 0px 0px"}}>Já tem conta?</p>
+      <Link to={'/signup'} className="small-buttons">Login</Link>
     </div>
   )
 }

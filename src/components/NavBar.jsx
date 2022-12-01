@@ -31,7 +31,7 @@ function NavBar() {
     <Navbar  expand="lg" expanded={expanded} className='nav' fixed="top">
       <Container>
         <Link to="/"><img src={logo} alt="DGRM logo" style={{height: "7vh"}} onClick={closeNavBar}/></Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor: "rgba(255, 255, 255, 0.6)", border: "3px solid black", boxShadow: toggleCollapse ? "0 0 10px 0 black" : "none"}} onClick={ () => {handleToggleCollapse(); setExpanded(expanded ? false : "expanded")}}/>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor: toggleCollapse? "rgba(52, 156, 241, 0.4)" : "rgba(0,48,87,0.4)", border: "3px solid black", boxShadow: toggleCollapse ? "0 0 10px 0 black" : "none"}} onClick={ () => {handleToggleCollapse(); setExpanded(expanded ? false : "expanded")}}/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavLink to="/fishes" className={"nav-link"} onClick={closeNavBar}>Espécies</NavLink>

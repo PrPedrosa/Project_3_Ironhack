@@ -1,11 +1,9 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Fish from "../components/Fish"
-import styled from "styled-components"
 
 function Fishes() {
-    
-        
+       
     const [defaultFishes, setDefaultFishes] = useState(null)
     
     const getFishes = async() => {
@@ -19,10 +17,11 @@ function Fishes() {
     useEffect(() => {getFishes()}, [])
 
   return (
-    <div>
+    <div className="card-container page-body">
+        <h1 style={{textAlign: "center", padding: "4vh", textDecoration: "underline"}}>Espécies</h1>
         {defaultFishes && defaultFishes.map(fish => {
             return(
-                <div key={fish._id}>
+                <div key={fish._id} style={{border: "1px solid black", borderRadius: "5px", margin: "2vh", textAlign: "center"}}>
                   <Fish fish={fish}/>
                 </div>
             )

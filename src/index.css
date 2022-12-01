@@ -225,7 +225,7 @@ i > p{
 }
 
 .card-box{
-  width: 65vw;
+  width: 75vw;
   margin: 1vw 1vw 5vw 1vw;
   border: 1px solid black;
   border-radius: 5px;
@@ -287,7 +287,46 @@ i > p{
   width: 90%;
 }
 
+.error-message{
+  color: rgb(197, 0, 0);
+  border-bottom: 1px solid rgb(196, 0, 0);
+}
 
+.footer-link{
+  font-weight: bold;
+  color: white;
+}
+
+.user-fish-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vh 0;
+}
+
+.user-fish-box-details{
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+}
+
+.user-fish-img-box{
+  width: 50vw;
+  text-align: center;
+}
+
+.user-fish-img{
+  object-fit: contain;
+}
+
+.user-fish-box-info{
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-fish-btn{
+  font-weight: bold;
+}
 
 
 

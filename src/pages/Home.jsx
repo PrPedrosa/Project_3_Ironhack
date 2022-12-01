@@ -22,7 +22,7 @@ function Home() {
       </div>}
     </div>
     <footer className='home-footer'>
-        <p className='home-p'>Projeto desenvolvido por <a href='https://www.linkedin.com/in/prpedrosa/' target={"_blank"}>Pedro Pedrosa</a> em parceria com a <a href='https://www.dgrm.mm.gov.pt/' target={"_blank"}>DGRM</a></p>
+        <p className='home-p'>Projeto desenvolvido por <a href='https://www.linkedin.com/in/prpedrosa/' target={"_blank"} className="footer-link">Pedro Pedrosa</a> em parceria com a <a href='https://www.dgrm.mm.gov.pt/' target={"_blank"} className="footer-link">DGRM</a></p>
     </footer>
     </>
   )

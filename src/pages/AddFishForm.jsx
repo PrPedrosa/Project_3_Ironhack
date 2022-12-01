@@ -94,10 +94,10 @@ function AddFishForm() {
           <p className='small-buttons'>Alterar foto</p>
         </>
         : <i className="fa fa-3x fa-camera"><p>Adicionar Imagem</p></i>}
-        <input type="file" name='image' id='image' onChange={handleUpload} className="image-input"/>
+        <input type="file" name='image' id='image' onChange={handleUpload} className="image-input" required/>
         </label>
         {/* {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>} */}
-        {!loading ? <button type="submit" className='buttons'>Adicionar</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
+        {!loading ? <button type="submit" className='buttons'>Criar Troféu</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
     </form>
     <p>Campos marcados com * são obrigatórios</p>
     </div>

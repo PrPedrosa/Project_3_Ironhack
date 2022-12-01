@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card';
 function Fish(props) {
     const [showDetails, setShowDetails] = useState(false)
     const {fish} = props
-    const{className} = props
 
     const toggleDetails = () => setShowDetails(!showDetails)
 
@@ -21,17 +20,18 @@ function Fish(props) {
       <Card.Body>
         <Card.Title>{fish.commonName}</Card.Title>
         {showDetails && <div>
-            <Card.Text>{fish.scientificName}</Card.Text>
-            {fish.minCatchSize ? <Card.Text>Tamanho mínimo de captura: {fish.minCatchSize}cm</Card.Text> : <Card.Text>Peso mínimo de captura: {fish.minCatchWeight}Kg</Card.Text>}
-            <Card.Text>Existem {fish.totalAmountCatched} registos de capturas desta espécie</Card.Text>
-            <Card.Text>Categoria de Ameaça: {fish.threatCategory}</Card.Text>
-            <Card.Text>Habitat: {fish.habitat}</Card.Text>
-            <Card.Text>Distribuição: {fish.areaFound}</Card.Text>
-            <Card.Text>Descrição: {fish.description}</Card.Text>
-            <Card.Text>Tamanho Máximo: {fish.maxLength}cm</Card.Text>
+            <Card.Text><em style={{fontWeight: "700"}}>{fish.scientificName}</em></Card.Text>
+            {fish.minCatchSize && <Card.Text><b>Tamanho mínimo de captura: </b><br />{fish.minCatchSize}cm</Card.Text>}
+            {fish.minCatchWeight && <Card.Text><b>Peso mínimo de captura: </b><br />{fish.minCatchWeight}Kg</Card.Text>}
+            <Card.Text>Existem <b>{fish.totalAmountCatched}</b> registos de capturas desta espécie</Card.Text>
+            <Card.Text><b>Categoria de Ameaça: </b><br />{fish.threatCategory}</Card.Text>
+            <Card.Text><b>Habitat: </b><br />{fish.habitat}</Card.Text>
+            <Card.Text><b>Distribuição:</b><br /> {fish.areaFound}</Card.Text>
+            <Card.Text><b>Descrição:</b> <br />{fish.description}</Card.Text>
+            <Card.Text><b>Tamanho Máximo:</b><br /> {fish.maxLength}cm</Card.Text>
         </div>
         }
-        <Button variant="primary" onClick={toggleDetails}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</Button>
+        <button  onClick={toggleDetails} className={showDetails? "small-buttons switch" : "small-buttons"}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</button>
       </Card.Body>
     </Card>
   )

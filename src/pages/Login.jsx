@@ -38,22 +38,22 @@ function Login(props) {
   };
 
   return (
-    <div className="LoginPage">
+    <div className='form-box form-div' style={{height: "100vh"}}>
       <h1>Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+      <form onSubmit={handleLoginSubmit} className='form-box form-form'>
+        <label>Email</label>
+        <input type="email" name="email" value={email} onChange={handleEmail} required/>
 
-        <label>Password:</label>
-        <input type="password" name="password" value={password} onChange={handlePassword} />
+        <label>Password</label>
+        <input type="password" name="password" value={password} onChange={handlePassword} required/>
 
-        <button type="submit">Login</button>
+        <button type="submit" className='buttons' style={{margin: "1vw"}}>Login</button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Don't have an account yet?</p>
-      <Link to={'/signup'}> Sign Up</Link>
+      <p style={{margin: "10px 0px 0px 0px"}}>Ainda não tem conta?</p>
+      <Link to={'/signup'} className="small-buttons">Criar Conta</Link>
     </div>
   );
 }

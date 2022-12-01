@@ -12,9 +12,28 @@ function Profile() {
     const [allUserFishes, setAllUserFishes] = useState(null)
     const [seeFisheries, setSeeFisheries] = useState(false)
     const [seeFishes, setSeeFishes] = useState(false)
+    console.log(seeFishes)
+    console.log(allUserFishes)
 
-    const toggleSeeFisheries = () => setSeeFisheries(!seeFisheries)
-    const toggleSeeFishes = () => setSeeFishes(!seeFishes)
+    const toggleSeeFisheries = () => {
+      if(allUserFisheries){
+        setSeeFisheries(false)
+        setAllUserFisheries(null)
+      } else {
+        getFisheries()
+        setSeeFisheries(true)
+      }
+    }
+
+    const toggleSeeFishes = () => {
+      if (allUserFishes) {
+        setSeeFishes(false)
+        setAllUserFishes(null);
+      } else {
+        getFishes()
+        setSeeFishes(true)
+      }
+    }
     
     const getFisheries = async () => {
         try {
@@ -31,13 +50,14 @@ function Profile() {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/userfishes`, {
               headers: { Authorization: `Bearer ${storedToken}` },
             })
-            setAllUserFishes(response.data.filter(fish => fish.userId === user._id))
+            console.log(response.data)
+            setAllUserFishes(response.data.filter(fish => fish.userId._id === user._id))
         } catch (error) {
             console.log(error)
         }
     }
 
-    const deleteFish = async (fishId) => {
+/*     const deleteFish = async (fishId) => {
       try {
         await axios.delete(`${process.env.REACT_APP_API_URL}/fishes/${fishId}/${user._id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -46,13 +66,13 @@ function Profile() {
       } catch (error) {
         console.log(error)
       }
-    }
+    } */
 
-    useEffect(() => {getFisheries()}, [user])
+    /* useEffect(() => {getFisheries()}, [user])
     useEffect(() => {getFishes()}, [user])
-    
+     */
   return (
-    <div className='page-body' style={!seeFisheries ? {height: "100vh"}: {height: "100%"}}>
+    <div className='page-body' style={(seeFisheries || (allUserFishes && allUserFishes[1])) ? {height: "100%"}: {height: "100vh"}}>
       {user && <div className='user-details'>
       <div className='details-container'>
         <div className='user-pic-container'>
@@ -84,15 +104,29 @@ function Profile() {
         )
       })}
       </div>
+      <div className='card-container'>
       {allUserFishes && seeFishes && allUserFishes.map(fish => {
         return (
-          <div key={fish._id}>
-            <p>{fish.commonName}</p>
-            <Link to={`/edit/fish/${fish._id}`}>Editar</Link>
-            <button onClick={() => deleteFish(fish._id)}>Apagar</button>
+          <>
+          <div key={fish._id} className="user-fish-box">
+            <div className='user-fish-img-box'>
+            <img src={fish.image} alt={fish.commonName} style={{height: "10vh"}} className="user-fish-img"/>
+            </div>
+            <div className='user-fish-box-details'>
+            <div className='user-fish-box-info'>
+            <span><b>{fish.commonName} - </b> {fish.weight}kg, {fish.length}cm</span>
+            {/* <span>{fish.weight}kg,</span>
+            <span>{fish.length}cm</span> */}
+            </div>
+            <span>{fish.areaFound}</span>
+            <Link to={`/edit/fish/${fish._id}`} className="edit-fish-btn">Editar</Link>
+            </div>
           </div>
+          <hr  style={{border: "1px solid blue", width: "90%", margin: "8px 0px"}}/>
+          </>
         )
       })}
+      </div>
     </div>
   )
 }
