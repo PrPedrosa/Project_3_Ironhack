@@ -3,6 +3,7 @@ import {useContext, useState} from "react"
 import axios from 'axios';
 import Fishery from '../components/Fishery';
 import { Link } from 'react-router-dom';
+import loadingGif from "../images/loading-gif.gif"
 
 function Profile() {
     const {user} = useContext(AuthContext)
@@ -12,6 +13,7 @@ function Profile() {
     const [allUserFishes, setAllUserFishes] = useState(null)
     const [seeFisheries, setSeeFisheries] = useState(false)
     const [seeFishes, setSeeFishes] = useState(false)
+    const [loading, setLoading] = useState(false)
     console.log(seeFishes)
     console.log(allUserFishes)
 
@@ -20,8 +22,10 @@ function Profile() {
         setSeeFisheries(false)
         setAllUserFisheries(null)
       } else {
+        setLoading(true)
         getFisheries()
         setSeeFisheries(true)
+        setLoading(false)
       }
     }
 
@@ -30,8 +34,10 @@ function Profile() {
         setSeeFishes(false)
         setAllUserFishes(null);
       } else {
+        setLoading(true)
         getFishes()
         setSeeFishes(true)
+        setLoading(false)
       }
     }
     
@@ -94,6 +100,7 @@ function Profile() {
       <div className='profile-buttons-box'>
       <button onClick={toggleSeeFisheries} className={seeFisheries? "buttons switch" : "buttons"}>{seeFisheries? "Esconder Pescas" : "Ver Pescas"}</button>
       <button onClick={toggleSeeFishes} className={seeFishes? "buttons switch" : "buttons"}>{seeFishes? "Esconder Troféus" : "Ver Troféus"}</button>
+      {loading && <img src={loadingGif} alt="loading"/>}
       </div>
       <div className='card-container'>
       {allUserFisheries && seeFisheries && allUserFisheries.map(fishery => {
@@ -105,6 +112,7 @@ function Profile() {
       })}
       </div>
       <div className='card-container'>
+      
       {allUserFishes && seeFishes && allUserFishes.map(fish => {
         return (
           <>

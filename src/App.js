@@ -15,11 +15,14 @@ import AddFishForm from './pages/AddFishForm';
 import EditFishForm from './pages/EditFishForm';
 import UserFishes from './pages/UserFishes';
 import AddTrashForm from './pages/AddTrashForm';
+import {ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+      <ToastContainer />
       
       <Routes>
         <Route path='/' element={<Home/>}/>

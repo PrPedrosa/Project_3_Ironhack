@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState, useEffect, useContext } from "react"
 import { AuthContext } from '../contexts/auth.context';
 import { Link } from "react-router-dom";
+import loadingGif from "../images/loading-gif.gif"
 
 function UserFishes() {
     const [allUserFishes, setAllUserFishes] = useState(null)
@@ -24,7 +25,7 @@ function UserFishes() {
   <div className="page-body" style={allUserFishes && allUserFishes[3] ? {height: "100%"} : {height: "100vh"}}>
     <h1 className="subtitle">Troféus</h1>
     <div className='card-container'>
-      {allUserFishes && allUserFishes.map(fish => {
+      {allUserFishes ? allUserFishes.map(fish => {
         return (
           <>
           <div key={fish._id} className="user-fish-box">
@@ -45,7 +46,7 @@ function UserFishes() {
           <hr  style={{border: "1px solid blue", width: "90%", margin: "8px 0px"}}/>
           </>
         )
-      })}
+      }) : <img src={loadingGif} alt="loading"/>}
     </div>
   </div>
   )

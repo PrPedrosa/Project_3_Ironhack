@@ -98,7 +98,7 @@ function EditFishForm() {
     <div className='form-box form-div'>
        <h1>Editar Troféu</h1>
         <form onSubmit={handleSubmit} className='form-box form-form'>
-        <label htmlFor="commonName">Espécie:</label>
+        <label htmlFor="commonName">Espécie</label>
         <input type="text" name='commonName' id='commonName' value={commonName} onChange={handleCommonName}/>
 
         {/* <label htmlFor="image">Foto:</label>
@@ -106,17 +106,17 @@ function EditFishForm() {
         <input type="file" name='image' id='image' onChange={handleUpload}/> */}
 
 
-        <label htmlFor="areaFound">Localização:</label>
+        <label htmlFor="areaFound">Localização</label>
         <input type="text" name='areaFound' id='areaFound' value={areaFound} onChange={handleAreaFound}/>
 
-        <label htmlFor="weight">Peso:</label>
+        <label htmlFor="weight">Peso</label>
         <input type="number" name='weight' id='weight' value={weight} step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight}/>
 
-        <label htmlFor="length">Tamanho:</label>
+        <label htmlFor="length">Tamanho</label>
         <input type="number" name='length' id='length' value={length} onChange={handleLength}/>
 
         <label htmlFor="image" className='form-box'>
-        <p>Imagem*</p>
+        <p>Imagem</p>
         {image ? 
         <>
           <img src={image} alt="current"/>

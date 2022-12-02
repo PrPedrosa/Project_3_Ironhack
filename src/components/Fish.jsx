@@ -7,15 +7,9 @@ function Fish(props) {
 
     const toggleDetails = () => setShowDetails(!showDetails)
 
-    /* <div>
-    <p>{fish.commonName}</p>
-    <img src={fish.image} alt={fish.commonName} style={{height: "7vh"}}/>
-    {showDetails && <p>{fish.scientificName}</p>}
-    <button onClick={toggleDetails}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</button>
-    </div> */
   return (
-    <Card style={{ width: '80vw' }}>
-      <Card.Img variant="top" src={fish.image} />
+    <Card >
+      <Card.Img variant="top" src={fish.image}/>
       <Card.Body>
         <Card.Title>{fish.commonName}</Card.Title>
         {showDetails && <div>

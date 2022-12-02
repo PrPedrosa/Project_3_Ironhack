@@ -45,7 +45,7 @@ body {
 }
 
 .box-body{
-  background-color: rgba(0, 181, 226, 0.2);
+  background-color: rgba(0, 181, 226, 0.1);
   padding-top: 9vh;
   height: 100vh;
 }
@@ -107,9 +107,8 @@ i > p{
 }
 
 .page-body{
-  background-color: rgba(0, 181, 226, 0.2);
+  background-color: rgba(0, 100, 226, 0.2);
   padding-top: 9vh;
-
 }
 
 .buttons{
@@ -267,7 +266,7 @@ i > p{
 
 .form-div{
   padding-top: 12vh;
-  background-color: rgba(0, 181, 226, 0.2);
+  background-color: rgba(0, 100, 226, 0.2);
 }
 
 .form-form{
@@ -358,7 +357,7 @@ i > p{
   }
 
   .card-box{
-    width: 30vw
+    width: 27vw
   }
 
   .user-details{
@@ -404,5 +403,25 @@ i > p{
     justify-content: space-between;
     width: 50vw;
 
+  }
+
+  .giveSpace{
+    padding: 0 15vw;
+  }
+
+  .navbar-nav{
+    margin-left: 6vw;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+  }
+
+  .logoutlink{
+    color: rgba(245, 2, 2, 0.7) !important;
+    border-bottom: 1px solid rgba(172, 0, 0, 0.7) !important;
+  }
+
+  .fish-card-box{
+    width: 35vw;
   }
 }

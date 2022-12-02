@@ -80,7 +80,7 @@ function EditUserForm() {
     <div className='form-box form-div'>
       <h1>Editar Dados</h1>
       <form onSubmit={handleSubmit} className='form-box form-form'>
-        <label htmlFor="name">Nome:</label>
+        <label htmlFor="name">Nome</label>
         <input type="text" name='name' id='name' value={name} onChange={handleName}/>
 
         {/* <label htmlFor="image">Foto de Perfil:</label>
@@ -88,15 +88,15 @@ function EditUserForm() {
         <input type="file" name='image' id='image' onChange={handleUpload}/> */}
 
 
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email</label>
         <input type="text" name='email' id='email' value={email} onChange={handleEmail}/>
 
-        <label htmlFor="sustainableFisherNumber">Nº de cartão:</label>
+        <label htmlFor="sustainableFisherNumber">Nº Cartão Pescador Sustentável</label>
         <input type="text" name='sustainableFisherNumber' id='sustainableFisherNumber' value={sustainableFisherNumber} onChange={handleSustainableFisherNumber}/>
 
         {/* {loading ? <p>Loading...</p> :<button type='submit'>Guardar alterações</button>} */}
         <label htmlFor="image" className='form-box'>
-        <p>Imagem*</p>
+        <p>Imagem</p>
         {image ? 
         <>
           <img src={image} alt="current"/>

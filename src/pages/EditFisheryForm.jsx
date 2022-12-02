@@ -156,10 +156,10 @@ function EditFisheryForm() {
         <h1>Editar Pesca</h1>
         
         <form onSubmit={handleSubmit} className='form-box form-form'>
-            <label htmlFor="date">Data*</label>
+            <label htmlFor="date">Data</label>
             <input type="date" name="date" id="date" value={date} onChange={handleDate} required/>
 
-            <label htmlFor="location">Localização*</label>
+            <label htmlFor="location">Localização</label>
             <select name="location" id="location" onChange={handleLocation} value={location ? location : setLocation("Em frente a praia da Parede")} required>
                 <option value="Em frente a praia da Parede">Em frente à praia da Parede</option>
                 <option value="Em frente a praia das Avencas">Em frente à praia das Avencas</option>
@@ -167,7 +167,7 @@ function EditFisheryForm() {
                 <option value="Em frente a praia da Bafureira">Em frente à praia da Bafureira</option>
             </select>
 
-            <label htmlFor="fishingType">Modalidade*</label>
+            <label htmlFor="fishingType">Modalidade</label>
             <select name="fishingType" id="fishingType" onChange={handleFishingType} value={fishingType? fishingType : setFishingType("Caça submarina")} required>
                 <option value="Caça submarina">Caça submarina</option>
                 <option value="Pesca com linha">Pesca com linha</option>
@@ -195,19 +195,19 @@ function EditFisheryForm() {
 
             <em style={{textAlign: "center"}}>Adicione em baixo todas as capturas</em>
 
-            <label htmlFor="fishes">Espécie*</label>
-            <select name="fishes" id="fishes" onClick={handleFishCaught} required>
+            <label htmlFor="fishes">Espécie</label>
+            <select name="fishes" id="fishes" onClick={handleFishCaught}>
                 {allFishes && allFishes.map(fish =>{
                     return (
                         <option value={fish.commonName} key={fish._id}>{fish.commonName}</option>
                     )
                 })}
             </select>
-            <label htmlFor="length">Tamanho (em cm)* </label>
-            <input type="number" name="length" id="length" onChange={handleLength} required/>
+            <label htmlFor="length">Tamanho (em cm) </label>
+            <input type="number" name="length" id="length" onChange={handleLength}/>
 
-            <label htmlFor="weight">Peso (em kg)* </label>
-            <input type="number" name="weight" id="weight" step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight} required/>
+            <label htmlFor="weight">Peso (em kg) </label>
+            <input type="number" name="weight" id="weight" step="0.01" min="0" max="1000" placeholder='1.5' onChange={handleWeight}/>
             <span onClick={handleFishesCaught} className="small-buttons">Adicionar Captura</span>
 
             {/* loop over fishescaught array to show to user and let him delete */}
@@ -227,7 +227,6 @@ function EditFisheryForm() {
             {/* {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>} */}
             {!loading ? <button type="submit" className='buttons'>Submeter</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
         </form>
-        <p>Campos marcados com * são obrigatórios</p>
         <button onClick={deleteFishery} className="small-buttons logout">Apagar Pesca</button>
     </div>
   )

@@ -2,6 +2,7 @@ import {useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import loadingGif from "../images/loading-gif.gif"
+import {toast} from "react-toastify"
 
 function AddTrashForm() {
     const [location, setLocation] = useState("")
@@ -33,22 +34,30 @@ function AddTrashForm() {
         }
     };
 
+    const notify = () => {
+      toast.success("Lixo reportado, Obrigado!", {
+        position: toast.POSITION.TOP_CENTER,
+        theme: "dark",
+        icon: "✔️",
+      })
+    }
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
+        notify()
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/trash`, {location, trashType, image})
 
             setImage("")
             setLocation("")
             setTrashType("")
-
             navigate("/")
         } catch (error) {
             console.log(error)
         }
 
     }
+
   return (
     <div className='form-box form-div' style={{height: "100vh"}}>
       <h1>Reportar Lixo</h1>

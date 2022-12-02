@@ -40,11 +40,13 @@ function NavBar() {
             <>
             <NavLink to="/add/fishery" className={"nav-link"} onClick={closeNavBar}>Registar Pesca</NavLink>
             <NavLink to="/userfishes" className={"nav-link"} onClick={closeNavBar}>Troféus</NavLink>
+            <p className='giveSpace'></p>
             <NavLink to="/profile" className={"nav-link"} onClick={closeNavBar}>Perfil</NavLink>
-            <Link to="/" onClick={() => {logout(); closeNavBar()}} className={"nav-link"}>Logout</Link>
+            <Link to="/" onClick={() => {logout(); closeNavBar()}} className={"nav-link logoutlink"} >Logout</Link>
             </>}
             {!loggedIn && 
             <>
+              <p className='giveSpace'></p>
               <NavLink to="/login" className={"nav-link"} onClick={closeNavBar}>Log In</NavLink>
               <NavLink to="/signup" className={"nav-link"} onClick={closeNavBar}>Sign Up</NavLink>
             </>}

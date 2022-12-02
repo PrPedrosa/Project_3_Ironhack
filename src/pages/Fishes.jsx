@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Fish from "../components/Fish"
+import loadingGif from "../images/loading-gif.gif"
 
 function Fishes() {
        
@@ -17,15 +18,18 @@ function Fishes() {
     useEffect(() => {getFishes()}, [])
 
   return (
-    <div className="card-container page-body">
+    <div className="page-body">
         <h1 className="subtitle">Espécies</h1>
-        {defaultFishes && defaultFishes.map(fish => {
+        <div className="card-container">
+        {defaultFishes ? defaultFishes.map(fish => {
             return(
-                <div key={fish._id} style={{border: "1px solid black", borderRadius: "5px", margin: "2vh", textAlign: "center"}}>
+                <div key={fish._id} style={{border: "1px solid black", borderRadius: "5px", margin: "2vh", textAlign: "center"}} className="fish-card-box">
                   <Fish fish={fish}/>
                 </div>
             )
-        })}
+        }): <img src={loadingGif} alt="loading"/>}
+
+        </div>
     </div>
   )
 }
