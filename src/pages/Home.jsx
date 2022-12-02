@@ -3,8 +3,7 @@ import {useContext} from "react"
 import homeImage from "../images/home-image.jpg"
 import { Link } from 'react-router-dom';
 function Home() {
-  const {loggedIn, user} = useContext(AuthContext);
-  //do button to display weather
+  const {loggedIn} = useContext(AuthContext);
 
   return (
     <>

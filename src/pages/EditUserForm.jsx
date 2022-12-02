@@ -1,7 +1,7 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useContext} from 'react'
 import axios from "axios"
 import {AuthContext} from '../contexts/auth.context';
-import {useNavigate, useParams} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import loadingGif from "../images/loading-gif.gif"
 
 function EditUserForm() {
@@ -55,8 +55,7 @@ function EditUserForm() {
             setEmail("")
             setImage("")
             setSustainableFisherNumber("")
-            
-            
+             
             navigate("/profile")
         } catch (error) {
             console.log(error)

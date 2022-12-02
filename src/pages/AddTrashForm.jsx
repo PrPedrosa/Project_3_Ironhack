@@ -79,10 +79,9 @@ function AddTrashForm() {
         <input type="file" name='image' id='image' onChange={handleUpload} className="image-input"/>
         </label>
         
-
         {!loading ? <button type="submit" className='buttons'>Reportar</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}{/*spinner instead of p? */}
       </form>
-      <p>Campos marcados com * são obrigatórios</p>
+      <em>Campos marcados com * são obrigatórios</em>
     </div>
   )
 }

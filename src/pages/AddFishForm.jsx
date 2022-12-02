@@ -1,7 +1,7 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useContext} from 'react'
 import axios from "axios"
 import {AuthContext} from '../contexts/auth.context';
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import loadingGif from "../images/loading-gif.gif"
 
 function AddFishForm() {
@@ -67,15 +67,10 @@ function AddFishForm() {
 
   return (
     <div className='form-box form-div'>
-    <h1>Adicionar Troféu</h1>
-    <form onSubmit={handleSubmit} className='form-box form-form'>
+      <h1>Adicionar Troféu</h1>
+      <form onSubmit={handleSubmit} className='form-box form-form'>
         <label htmlFor="commonName">Espécie*</label>
         <input type="text" name='commonName' id='commonName' value={commonName} onChange={handleCommonName} required/>
-
-        {/* <label htmlFor="image">Foto:</label>
-        {image && <img src={image} alt="current"/>}
-        <input type="file" name='image' id='image' onChange={handleUpload}/> */}
-
 
         <label htmlFor="areaFound">Localização*</label>
         <input type="text" name='areaFound' id='areaFound' value={areaFound} onChange={handleAreaFound} required/>
@@ -91,15 +86,15 @@ function AddFishForm() {
         {image ? 
         <>
           <img src={image} alt="current"/>
-          <p className='small-buttons'>Alterar foto</p>
+          <p className='small-buttons'>Alterar Imagem</p>
         </>
         : <i className="fa fa-3x fa-camera"><p>Adicionar Imagem</p></i>}
         <input type="file" name='image' id='image' onChange={handleUpload} className="image-input" required/>
         </label>
-        {/* {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>} */}
+  
         {!loading ? <button type="submit" className='buttons'>Criar Troféu</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
-    </form>
-    <p>Campos marcados com * são obrigatórios</p>
+      </form>
+      <em>Campos marcados com * são obrigatórios</em>
     </div>
   )
 }

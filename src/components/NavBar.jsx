@@ -9,18 +9,11 @@ import logo from "../images/fish-logo.png"
 
 
 function NavBar() {
-  const location = useLocation();
-  const [url, setUrl] = useState(null);
-  const {user, loggedIn, logout} = useContext(AuthContext)
+  const {loggedIn, logout} = useContext(AuthContext)
   const [toggleCollapse, setToggleCollapse] = useState(false)
   const [expanded, setExpanded] = useState(false);
 
   const handleToggleCollapse = () => setToggleCollapse(!toggleCollapse)
-
-  useEffect(() => {
-    setUrl(location.pathname);
-
-  }, [location]);
 
   const closeNavBar = () => {
     setExpanded(false)

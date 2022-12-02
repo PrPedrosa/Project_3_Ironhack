@@ -179,10 +179,9 @@ function NewFisheryForm() {
             })}      
             </div>
 
-            {/* {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>} */}
             {!loading ? <button type="submit" className='buttons'>Submeter</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
         </form>
-        <p>Campos marcados com * são obrigatórios</p>
+        <em>Campos marcados com * são obrigatórios</em>
     </div>
   )
 }

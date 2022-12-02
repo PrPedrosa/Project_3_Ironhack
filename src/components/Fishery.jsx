@@ -16,7 +16,6 @@ function Fishery({fishery}) {
             <Card.Text><b>Localização: </b><br />{fishery.location}</Card.Text>
         {showDetails && <div>
             <Card.Text><b>Modalidade: </b><br />{fishery.fishingType}</Card.Text>
-            {/* <Card.Text>Peso Total: {fishery.overallWeight} kg</Card.Text> */}
             <Card.Text><b>Peso Total: </b> {fishery.fishes.length !== 1? fishery.fishes.reduce((acc, val) => acc.weight + val.weight): fishery.fishes[0].weight} kg</Card.Text>
             <hr />
             {fishery.fishes.map(fish => {
@@ -31,8 +30,8 @@ function Fishery({fishery}) {
         </div>
         }
         <div className='fishery-card-fishes'>
-        <button className={showDetails? 'small-buttons switch': "small-buttons"} onClick={toggleDetails}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</button>
-        <button className='small-buttons edit-btn'><Link to={`/edit/fishery/${fishery._id}`} className="link-text">Editar</Link></button>
+          <button className={showDetails? 'small-buttons switch': "small-buttons"} onClick={toggleDetails}>{showDetails? "Esconder detalhes" : "Ver detalhes"}</button>
+          <button className='small-buttons edit-btn'><Link to={`/edit/fishery/${fishery._id}`} className="link-text">Editar</Link></button>
         </div>
       </Card.Body>
     </Card>

@@ -188,7 +188,7 @@ function EditFisheryForm() {
             </label>
             {image && <span className='small-buttons logout' onClick={() => setImage("")}>Apagar Imagem</span>}
 
-            <label htmlFor="overallWeight">Peso Total(em Kg): </label>
+            <label htmlFor="overallWeight">Peso Total (em Kg): </label>
             <input type="number" step="0.01" min="0" max="1000" placeholder='1.5' value={overallWeight} onChange={handleOverallWeight}/>
 
             <hr style={{width: "80%"}}/>
@@ -215,7 +215,7 @@ function EditFisheryForm() {
             {fishesCaught.map(fish => {
                 return (
                     <div key={fish._id} className="display-fishes">
-                        <span>{fish.species} - </span>
+                        <span>{fish.species}:</span>
                         <span>{fish.length}cm,</span>
                         <span> {fish.weight}kg</span>
                         <button onClick={() => {deleteFishCaught(fishesCaught.indexOf(fish))}} className="small-buttons logout">Apagar</button>
@@ -225,7 +225,7 @@ function EditFisheryForm() {
             </div>
 
             {/* {!loading ? <button type="submit">Submeter</button> : <p>A carregar imagem...</p>} */}
-            {!loading ? <button type="submit" className='buttons'>Submeter</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
+            {!loading ? <button type="submit" className='buttons'>Guardar Alterações</button> : <img src={loadingGif} alt="loading" className='loading-gif'/>}
         </form>
         <button onClick={deleteFishery} className="small-buttons logout">Apagar Pesca</button>
     </div>

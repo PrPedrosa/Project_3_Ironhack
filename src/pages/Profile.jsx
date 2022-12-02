@@ -63,45 +63,32 @@ function Profile() {
         }
     }
 
-/*     const deleteFish = async (fishId) => {
-      try {
-        await axios.delete(`${process.env.REACT_APP_API_URL}/fishes/${fishId}/${user._id}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        getFishes()
-      } catch (error) {
-        console.log(error)
-      }
-    } */
-
-    /* useEffect(() => {getFisheries()}, [user])
-    useEffect(() => {getFishes()}, [user])
-     */
   return (
     <div className='page-body' style={(seeFisheries || (allUserFishes && allUserFishes[1])) ? {height: "100%"}: {height: "100vh"}}>
       {user && <div className='user-details'>
-      <div className='details-container'>
-        <div className='user-pic-container'>
-          <img src={user.image} alt="user face" className='user-pic'/>
+        <div className='details-container'>
+          <div className='user-pic-container'>
+            <img src={user.image} alt="user face" className='user-pic'/>
+          </div>
+          <div className='details-links'>
+            <Link to={`/edit/user/`} className="small-buttons edit-btn">Editar Perfil</Link>
+            <Link to={`/add/fish/`} className="small-buttons">Adicionar Troféu</Link>
+            <Link to={`/add/fishery/`} className="small-buttons">Registar Pesca</Link>
+          </div>
         </div>
-        <div className='details-links'>
-          <Link to={`/edit/user/`} className="small-buttons edit-btn">Editar Perfil</Link>
-          <Link to={`/add/fish/`} className="small-buttons">Adicionar Troféu</Link>
-          <Link to={`/add/fishery/`} className="small-buttons">Registar Pesca</Link>
-          {/* <button onClick={logout} className="small-buttons logout">Logout</button> */}
+        <div className='details-box'>
+          <p><b>{user.name}</b></p>
+          <p><b>{user.email}</b></p>
+          <p><b>Cartão de Pescador Sustentável:</b> <br></br>{user.sustainableFisherNumber}</p>
         </div>
-      </div>
-      <div className='details-box'>
-        <p><b>{user.name}</b></p>
-        <p><b>{user.email}</b></p>
-        <p><b>Cartão de Pescador Sustentável:</b> <br></br>{user.sustainableFisherNumber}</p>
-      </div>
       </div>}
+
       <div className='profile-buttons-box'>
-      <button onClick={toggleSeeFisheries} className={seeFisheries? "buttons switch" : "buttons"}>{seeFisheries? "Esconder Pescas" : "Ver Pescas"}</button>
-      <button onClick={toggleSeeFishes} className={seeFishes? "buttons switch" : "buttons"}>{seeFishes? "Esconder Troféus" : "Ver Troféus"}</button>
-      {loading && <img src={loadingGif} alt="loading"/>}
+        <button onClick={toggleSeeFisheries} className={seeFisheries? "buttons switch" : "buttons"}>{seeFisheries? "Esconder Pescas" : "Ver Pescas"}</button>
+        <button onClick={toggleSeeFishes} className={seeFishes? "buttons switch" : "buttons"}>{seeFishes? "Esconder Troféus" : "Ver Troféus"}</button>
+        {loading && <img src={loadingGif} alt="loading"/>}
       </div>
+
       <div className='card-container'>
       {allUserFisheries && seeFisheries && allUserFisheries.map(fishery => {
         return (
@@ -111,26 +98,24 @@ function Profile() {
         )
       })}
       </div>
+
       <div className='card-container'>
-      
       {allUserFishes && seeFishes && allUserFishes.map(fish => {
         return (
           <>
-          <div key={fish._id} className="user-fish-box">
-            <div className='user-fish-img-box'>
-            <img src={fish.image} alt={fish.commonName} style={{height: "10vh"}} className="user-fish-img"/>
+            <div key={fish._id} className="user-fish-box">
+              <div className='user-fish-img-box'>
+                <img src={fish.image} alt={fish.commonName} style={{height: "10vh"}} className="user-fish-img"/>
+              </div>
+              <div className='user-fish-box-details'>
+                <div className='user-fish-box-info'>
+                  <span><b>{fish.commonName} - </b> {fish.weight}kg, {fish.length}cm</span>
+                </div>
+                <span>{fish.areaFound}</span>
+                <Link to={`/edit/fish/${fish._id}`} className="edit-fish-btn">Editar</Link>
+              </div>
             </div>
-            <div className='user-fish-box-details'>
-            <div className='user-fish-box-info'>
-            <span><b>{fish.commonName} - </b> {fish.weight}kg, {fish.length}cm</span>
-            {/* <span>{fish.weight}kg,</span>
-            <span>{fish.length}cm</span> */}
-            </div>
-            <span>{fish.areaFound}</span>
-            <Link to={`/edit/fish/${fish._id}`} className="edit-fish-btn">Editar</Link>
-            </div>
-          </div>
-          <hr  style={{border: "1px solid blue", width: "90%", margin: "8px 0px"}}/>
+            <hr  style={{border: "1px solid blue", width: "90%", margin: "8px 0px"}}/>
           </>
         )
       })}

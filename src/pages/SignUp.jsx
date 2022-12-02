@@ -19,10 +19,9 @@ function SignUp() {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
-      //try to create the user
       await axios.post(`${process.env.REACT_APP_API_URL}/signup`, { email, password, name, sustainableFisherNumber });
-      //redirect
       navigate('/login');
+      
     } catch (error) {
       const errorDescription = error.response.data.message;
       setErrorMessage(errorDescription);

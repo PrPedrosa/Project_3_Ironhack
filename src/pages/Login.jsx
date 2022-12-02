@@ -17,20 +17,14 @@ function Login(props) {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      //try to create the user
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
         email,
         password,
       });
-
-      //store the token that we get from the login request
       storeToken(response.data.authToken);
-
-      //Validate the token
       authenticateUser();
-
-      //redirect
       navigate('/profile');
+      
     } catch (error) {
       const errorDescription = error.response.data.message;
       setErrorMessage(errorDescription);

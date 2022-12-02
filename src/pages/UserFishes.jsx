@@ -28,40 +28,26 @@ function UserFishes() {
       {allUserFishes ? allUserFishes.map(fish => {
         return (
           <>
-          <div key={fish._id} className="user-fish-box">
-            <div className='user-fish-img-box'>
-            <img src={fish.image} alt={fish.commonName} className="user-fish-img"/>
+            <div key={fish._id} className="user-fish-box">
+              <div className='user-fish-img-box'>
+              <img src={fish.image} alt={fish.commonName} className="user-fish-img"/>
+              </div>
+              <div className='user-fish-box-details'>
+                <span><b>Pescador: </b>{fish.userId.name}</span>
+                <div className='user-fish-box-info'>
+                  <span><b>{fish.commonName}: </b> {fish.weight}kg, {fish.length}cm</span>
+                </div>
+                <span>{fish.areaFound}</span>
+                {fish.userId._id === user._id && <Link to={`/edit/fish/${fish._id}`} className="edit-fish-btn">Editar</Link>}
+              </div>
             </div>
-            <div className='user-fish-box-details'>
-            <span><b>Pescador: </b>{fish.userId.name}</span>
-            <div className='user-fish-box-info'>
-            <span><b>{fish.commonName}: </b> {fish.weight}kg, {fish.length}cm</span>
-            {/* <span>{fish.weight}kg,</span>
-            <span>{fish.length}cm</span> */}
-            </div>
-            <span>{fish.areaFound}</span>
-            {fish.userId._id === user._id && <Link to={`/edit/fish/${fish._id}`} className="edit-fish-btn">Editar</Link>}
-            </div>
-          </div>
-          <hr  style={{border: "1px solid blue", width: "90%", margin: "8px 0px"}}/>
+            <hr  style={{border: "1px solid blue", width: "90%", margin: "8px 0px"}}/>
           </>
         )
       }) : <img src={loadingGif} alt="loading"/>}
     </div>
   </div>
-  )
-    /* <div>
-        {allUserFishes && allUserFishes.map(fish => {
-            return(
-                <div key={fish._id}>
-                  <p>{fish.commonName}</p>
-                  <img src={fish.image} alt={fish.commonName} />
-                  {fish.userId === user._id && <Link to={`/edit/fish/${fish._id}`}>Editar Troféu</Link>}
-                </div>
-            )
-        })}
-    </div> */
-  
+  )  
 }
 
 export default UserFishes
